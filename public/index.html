@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal Saberes Ancestrais & Cosmologia de Roraima</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                terracotta: '#8B4513',
+                clay: '#B85E36',
+                ochre: '#D9822B',
+                sand: '#F4EAE1',
+                forest: '#2C4A3E',
+                sunset: '#E76F51',
+                dark: '#1C1917',
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      .pattern-bg {
+        background-color: #1f2e27;
+        background-image: radial-gradient(#2c4037 0.75px, transparent 0.75px),
+          radial-gradient(#2c4037 0.75px, #1f2e27 0.75px);
+        background-size: 30px 30px;
+        background-position: 0 0, 15px 15px;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#1f2e27] text-stone-100 font-sans pattern-bg min-h-screen flex flex-col"
+  >
+    <!-- HEADER / NAVIGATION -->
+    <header
+      class="bg-brand-dark text-white border-b-4 border-brand-ochre sticky top-0 z-50 shadow-md"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex items-center space-x-3">
+            <div class="bg-brand-clay p-2.5 rounded-lg text-white">
+              <i data-lucide="feather" class="w-7 h-7"></i>
+            </div>
+            <div>
+              <h1 class="text-xl font-bold tracking-tight text-brand-sand">
+                Portal Saberes Ancestrais Macuxi
+              </h1>
+            </div>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <nav
+            class="hidden md:flex items-center space-x-8 text-sm font-medium"
+          >
+            <button
+              onclick="openTab('inicio')"
+              id="btn-inicio"
+              class="tab-btn text-brand-ochre font-bold transition"
+            >
+              Início
+            </button>
+            <button
+              onclick="openTab('gastronomia')"
+              id="btn-gastronomia"
+              class="tab-btn text-stone-300 hover:text-brand-ochre transition"
+            >
+              Gastronomia
+            </button>
+            <button
+              onclick="openTab('oficinas')"
+              id="btn-oficinas"
+              class="tab-btn text-stone-300 hover:text-brand-ochre transition"
+            >
+              Oficinas
+            </button>
+            <button
+              onclick="openTab('entidades')"
+              id="btn-entidades"
+              class="tab-btn text-stone-300 hover:text-brand-ochre transition"
+            >
+              Entidades Lendárias
+            </button>
+            <a
+              href="#agendamento"
+              class="bg-brand-clay hover:bg-brand-ochre text-white px-4 py-2 rounded-lg transition shadow-sm"
+              >Agendar Experiência</a
+            >
+          </nav>
+
+          <div class="md:hidden">
+            <button
+              id="mobile-menu-btn"
+              class="p-2 rounded-md text-stone-300 hover:text-white"
+            >
+              <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-stone-900 px-4 pt-2 pb-4 space-y-2 border-t border-stone-800"
+      >
+        <button
+          onclick="openTab('inicio'); toggleMobileMenu();"
+          class="block w-full text-left text-stone-300 hover:text-brand-ochre py-2"
+        >
+          Início
+        </button>
+        <button
+          onclick="openTab('gastronomia'); toggleMobileMenu();"
+          class="block w-full text-left text-stone-300 hover:text-brand-ochre py-2"
+        >
+          Gastronomia
+        </button>
+        <button
+          onclick="openTab('oficinas'); toggleMobileMenu();"
+          class="block w-full text-left text-stone-300 hover:text-brand-ochre py-2"
+        >
+          Oficinas
+        </button>
+        <button
+          onclick="openTab('entidades'); toggleMobileMenu();"
+          class="block w-full text-left text-stone-300 hover:text-brand-ochre py-2"
+        >
+          Entidades Lendárias
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN CONTAINER (ABAS) -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+      <!-- ABA 1: INÍCIO (História e Guia Completo) -->
+      <section id="tab-inicio" class="tab-content">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-10">
+            <h2 class="text-4xl font-bold text-stone-100 mb-4">
+              Comunidade Indígena Raposa I
+            </h2>
+            <p class="text-lg text-stone-300">
+              Guardiões da ancestralidade, da cultura viva e do turismo de base
+              comunitária em Roraima.
+            </p>
+          </div>
+
+          <!-- Bloco de História -->
+          <div
+            class="bg-[#263831] p-8 rounded-xl shadow-md mb-8 border border-[#354f43]"
+          >
+            <h3 class="text-2xl font-bold text-brand-ochre mb-4">
+              História e Território
+            </h3>
+            <p class="text-stone-300 leading-relaxed mb-4">
+              Localizada no município de Normandia, em Roraima, na região da
+              Raposa Serra do Sol, a
+              <strong>Comunidade Indígena Raposa I</strong> é lar para o povo
+              <strong>Macuxi</strong>, um dos povos tradicionais que habita o
+              solo brasileiro há gerações. A comunidade preserva seu modo de
+              vida ancestral, mantendo vivos rituais sagrados fundamentais, como
+              a tradicional dança Parixara e os rituais de defumação.
+            </p>
+            <p class="text-stone-300 leading-relaxed">
+              Pioneira no turismo de base comunitária na região, a comunidade
+              abriu suas portas a partir de 2019 com o apoio de órgãos oficiais
+              como a FUNAI e o DETUR-RR, unindo a geração de renda alternativa à
+              conservação de sua sociobiodiversidade e práticas seculares.
+            </p>
+          </div>
+
+          <!-- Guia Prático Completo (6 Cards) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <!-- 1. Como Chegar -->
+            <div
+              class="bg-[#263831] p-6 rounded-xl border border-[#354f43] shadow-md"
+            >
+              <h4
+                class="text-xl font-semibold text-stone-100 mb-3 flex items-center gap-2"
+              >
+                <i data-lucide="map-pin" class="w-5 h-5 text-brand-ochre"></i>
+                Como Chegar
+              </h4>
+              <p class="text-stone-300 text-sm leading-relaxed">
+                Fica a cerca de 240 km de Boa Vista. O trajeto de carro segue
+                pela BR-401 sentido Normandia, entrando na BR-433 (próximo ao
+                Lago Caracaranã). Recomenda-se o uso de veículos com tração 4x4.
+              </p>
+            </div>
+
+            <!-- 2. Hospedagem -->
+            <div
+              class="bg-[#263831] p-6 rounded-xl border border-[#354f43] shadow-md"
+            >
+              <h4
+                class="text-xl font-semibold text-stone-100 mb-3 flex items-center gap-2"
+              >
+                <i data-lucide="home" class="w-5 h-5 text-brand-ochre"></i>
+                Hospedagem
+              </h4>
+              <p class="text-stone-300 text-sm leading-relaxed">
+                A hospedagem ocorre de forma imersiva nas residências das
+                famílias anfitriãs (em redes ou barracas), proporcionando
+                convivência direta com o cotidiano da comunidade.
+              </p>
+            </div>
+
+            <!-- 3. Onde se Alimentar -->
+            <div
+              class="bg-[#263831] p-6 rounded-xl border border-[#354f43] shadow-md"
+            >
+              <h4
+                class="text-xl font-semibold text-stone-100 mb-3 flex items-center gap-2"
+              >
+                <i data-lucide="utensils" class="w-5 h-5 text-brand-ochre"></i>
+                Onde se Alimentar
+              </h4>
+              <p class="text-stone-300 text-sm leading-relaxed">
+                A alimentação ocorre na própria comunidade, junto às famílias
+                anfitriãs da Raposa I. Não há outras opções de alimentação,
+                assim que restrições alimentares devem ser informadas com
+                antecedência.
+              </p>
+            </div>
+
+            <!-- 4. Melhores Meses para Visitar -->
+            <div
+              class="bg-[#263831] p-6 rounded-xl border border-[#354f43] shadow-md"
+            >
+              <h4
+                class="text-xl font-semibold text-stone-100 mb-3 flex items-center gap-2"
+              >
+                <i data-lucide="calendar" class="w-5 h-5 text-brand-ochre"></i>
+                Melhores Meses para Visitar
+              </h4>
+              <p class="text-stone-300 text-sm leading-relaxed">
+                O melhor período para visitar o povo Macuxi é entre
+                <strong>outubro e março</strong>, devido à estação mais seca.
+                Ainda assim, fique atento a intempéries. Os dias de chuva mais
+                frequentes ocorrem entre maio e agosto.
+              </p>
+            </div>
+
+            <!-- 5. O Que Levar -->
+            <div
+              class="bg-[#263831] p-6 rounded-xl border border-[#354f43] shadow-md"
+            >
+              <h4
+                class="text-xl font-semibold text-stone-100 mb-3 flex items-center gap-2"
+              >
+                <i data-lucide="backpack" class="w-5 h-5 text-brand-ochre"></i>
+                O Que Levar
+              </h4>
+              <p class="text-stone-300 text-sm leading-relaxed">
+                Leve roupa de banho, toalhas, travesseiros, roupa de cama, itens
+                de higiene, sacos de lixo, protetor solar e repelente. Inclua
+                lanches, muita água, sombrinha para caminhadas e embale a mala
+                em saco de lixo para a viagem.
+              </p>
+            </div>
+
+            <!-- 6. Com Quem Falar -->
+            <div
+              class="bg-[#263831] p-6 rounded-xl border border-[#354f43] shadow-md"
+            >
+              <h4
+                class="text-xl font-semibold text-stone-100 mb-3 flex items-center gap-2"
+              >
+                <i data-lucide="phone" class="w-5 h-5 text-brand-ochre"></i>
+                Com Quem Falar
+              </h4>
+              <p class="text-stone-300 text-sm leading-relaxed mb-2">
+                <strong>Coordenador de Turismo (Enoque Raposo):</strong><br />
+                Instagram:
+                <a
+                  href="https://instagram.com/etnoturismo.raposa23"
+                  target="_blank"
+                  class="text-brand-ochre hover:underline"
+                  >@etnoturismo.raposa23</a
+                >
+                | WhatsApp: (95) 98426-2222
+              </p>
+              <p class="text-stone-300 text-sm leading-relaxed">
+                <strong>Guia Parceiro (Rocky Almeida):</strong><br />
+                Instagram:
+                <a
+                  href="https://instagram.com/rockpasseiosturisticosrr"
+                  target="_blank"
+                  class="text-brand-ochre hover:underline"
+                  >@rockpasseiosturisticosrr</a
+                >
+                | WhatsApp: (95) 99148-7914
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABA 2: GASTRONOMIA -->
+      <section id="tab-gastronomia" class="tab-content hidden">
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold text-stone-100 mb-2">
+            Gastronomia Tradicional
+          </h2>
+          <p class="text-stone-300">
+            Sabores ancestrais da Raposa I: damorida, caxiri e beiju.
+          </p>
+        </div>
+        <div
+          id="gastronomia-grid"
+          class="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          <!-- Conteúdo gerado via JS -->
+        </div>
+      </section>
+
+      <!-- ABA 3: OFICINAS -->
+      <section id="tab-oficinas" class="tab-content hidden">
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold text-stone-100 mb-2">
+            Oficinas & Saberes Práticos
+          </h2>
+          <p class="text-stone-300">
+            Vivências de panelas de barro, trilhas e arco e flecha.
+          </p>
+        </div>
+        <div id="oficinas-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Conteúdo gerado via JS -->
+        </div>
+      </section>
+
+      <!-- ABA 4: ENTIDADES LENDÁRIAS -->
+      <section id="tab-entidades" class="tab-content hidden">
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold text-stone-100 mb-2">
+            Entidades Lendárias & Cosmologia
+          </h2>
+          <p class="text-stone-300">
+            Mitos e conhecimentos profundos da cosmovisão Macuxi.
+          </p>
+        </div>
+        <div id="entities-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Conteúdo gerado via JS -->
+        </div>
+      </section>
+
+      <!-- ABA DEDICADA DE DETALHES (Exibida ao clicar em qualquer card) -->
+      <section id="tab-detalhe" class="tab-content hidden">
+        <button
+          onclick="voltarParaAba()"
+          class="mb-6 bg-[#263831] hover:bg-[#354f43] text-brand-ochre px-4 py-2 rounded-lg border border-[#354f43] transition flex items-center gap-2 text-sm font-medium"
+        >
+          ← Voltar
+        </button>
+        <div
+          id="detalhe-conteudo"
+          class="bg-[#263831] p-8 rounded-2xl border border-[#354f43] shadow-lg max-w-4xl mx-auto"
+        >
+          <!-- Conteúdo detalhado injetado via JavaScript -->
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer
+      class="bg-brand-dark text-stone-400 py-8 border-t border-stone-800 mt-auto"
+    >
+      <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+        <p>
+          &copy; 2026 Portal Saberes Ancestrais Macuxi - Comunidade Indígena
+          Raposa I.
+        </p>
+      </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+      lucide.createIcons();
+
+      let abaAtualAtiva = 'inicio';
+
+      function openTab(tabName) {
+        abaAtualAtiva = tabName;
+        document.querySelectorAll('.tab-content').forEach((section) => {
+          section.classList.add('hidden');
+        });
+
+        document.querySelectorAll('.tab-btn').forEach((btn) => {
+          btn.classList.remove('text-brand-ochre', 'font-bold');
+          btn.classList.add('text-stone-300');
+        });
+
+        const activeSection = document.getElementById(`tab-${tabName}`);
+        if (activeSection) {
+          activeSection.classList.remove('hidden');
+        }
+
+        const activeBtn = document.getElementById(`btn-${tabName}`);
+        if (activeBtn) {
+          activeBtn.classList.remove('text-stone-300');
+          activeBtn.classList.add('text-brand-ochre', 'font-bold');
+        }
+      }
+
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      function toggleMobileMenu() {
+        mobileMenu.classList.toggle('hidden');
+      }
+
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+      }
+
+      // Base de dados local e detalhada para os 3 cards de cada aba
+      const dadosLocais = {
+        entidades: [
+          {
+            id: 1,
+            titulo: 'Parixara',
+            subtitulo: 'Ritual Sagrado e Dança Ancestral',
+            icone: '✨',
+            descricao:
+              'Ritual sagrado de agradecimento em forma de dança e oração pela terra, pelos alimentos e pelo ciclo natural da vida.',
+            imagem:
+              'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80',
+            lenda:
+              'O Parixara é um agradecimento em forma de ritual ou oração pela terra, pelos alimentos e por tudo aquilo que permite o ciclo natural da vida. Os passos e cantos executados sem eletrônicos limpam e protegem espiritualmente a comunidade.',
+          },
+          {
+            id: 2,
+            titulo: 'Serra do Arco-Íris',
+            subtitulo: 'Paisagem Sagrada e História',
+            icone: '☀️',
+            descricao:
+              'Formação natural de grande importância cultural, onde condutores locais compartilham histórias ancestrais do povo Macuxi.',
+            imagem:
+              'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80',
+            lenda:
+              'Do alto da serra é possível avistar as belezas e vilas do entorno, enquanto os condutores locais transmitem as histórias lendárias que envolvem a geografia e a origem do povo Macuxi.',
+          },
+          {
+            id: 3,
+            titulo: 'Espíritos da Mata e das Águas',
+            subtitulo: 'Guardiões da Sociobiodiversidade',
+            icone: '🌙',
+            descricao:
+              'Entidades que zelam pela conservação dos rios, lagos e áreas verdes, protegendo a biodiversidade da região.',
+            imagem:
+              'https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=800&q=80',
+            lenda:
+              'Entidades que habitam os lagos e serras da Raposa I, zelando pelo respeito aos animais, à caça sustentável e à preservação milenar do território indígena.',
+          },
+        ],
+        gastronomia: [
+          {
+            id: 1,
+            titulo: 'Damurida',
+            subtitulo: 'A Iguaria Principal Macuxi',
+            icone: '🔥',
+            descricao:
+              'Prato típico tradicional à base de pimenta com folhas, tucupi e peixe, considerado a grande iguaria da culinária Macuxi.',
+            imagem:
+              'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80',
+            lenda:
+              'Prato tradicional à base de pimenta com folhas, tucupi e peixe (ou proteínas alternativas). É preparado nas panelas de barro artesanais e exige respeito devido ao ardor marcante das pimentas.',
+          },
+          {
+            id: 2,
+            titulo: 'Caxiri',
+            subtitulo: 'Bebida Fermentada Sagrada',
+            icone: '🌾',
+            descricao:
+              'Bebida fermentada tradicional feita à base de milho cozido, essencial nos rituais e na união para os trabalhos comunitários.',
+            imagem:
+              'https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=800&q=80',
+            lenda:
+              'Bebida à base de milho cozido que dá energia aos indígenas para os trabalhos manuais, rituais e união comunitária, servida em cuias tradicionais.',
+          },
+          {
+            id: 3,
+            titulo: 'Beiju e Farinha',
+            subtitulo: 'Sabores da Mandioca',
+            icone: '🌿',
+            descricao:
+              'Iguarias fundamentais preparadas de forma artesanal em tachos quentes e finalizadas com técnicas tradicionais no telhado.',
+            imagem:
+              'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80',
+            lenda:
+              'Preparados em tachos quentes e finalizados com técnicas ancestrais de arremesso no telhado de palha, representando a base da subsistência e partilha.',
+          },
+        ],
+        oficinas: [
+          {
+            id: 1,
+            titulo: 'Panela de Barro',
+            subtitulo: 'A Alma do Povo Macuxi',
+            icone: '🏺',
+            descricao:
+              'Oficina de moldagem e queima de barro com as artesãs da associação local, utilizando areias vermelha e branca.',
+            imagem:
+              'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=800&q=80',
+            lenda:
+              'Oficina prática com as artesãs locais usando areias vermelha e branca para moldar panelas e recipientes que sustentam a culinária tradicional.',
+          },
+          {
+            id: 2,
+            titulo: 'Trilha da Cachoeira',
+            subtitulo: 'Imersão na Natureza',
+            icone: '💧',
+            descricao:
+              'Caminhada guiada por condutores locais com paradas para banho, contemplação da paisagem e resgate histórico.',
+            imagem:
+              'https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&w=800&q=80',
+            lenda:
+              'Caminhada guiada por condutores locais passando por totens sagrados, culminando em banhos revigorantes nas águas cristalinas da região.',
+          },
+          {
+            id: 3,
+            titulo: 'Arco e Flecha',
+            subtitulo: 'Tradição Milenar',
+            icone: '🏹',
+            descricao:
+              'Vivência sobre a confecção de hastes, penas estabilizadoras e prática de tiro ao alvo tradicional.',
+            imagem:
+              'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=800&q=80',
+            lenda:
+              'Vivência de confecção de hastes, uso de penas estabilizadoras e prática de tiro ao alvo, ensinada por mestres tradicionais desde a infância.',
+          },
+        ],
+      };
+
+      function mostrarDetalhe(categoria, index) {
+        document
+          .querySelectorAll('.tab-content')
+          .forEach((s) => s.classList.add('hidden'));
+        document.getElementById('tab-detalhe').classList.remove('hidden');
+
+        const lista = dadosLocais[categoria] || [];
+        const item = lista[index] || lista[0];
+
+        document.getElementById('detalhe-conteudo').innerHTML = `
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div>
+                  <div class="flex justify-between items-center mb-3">
+                      <span class="bg-[#1f2e27] text-brand-ochre text-xs font-bold px-3 py-1 rounded-full border border-[#354f43]">MACUXI</span>
+                      <span class="text-brand-ochre text-xl">${item.icone}</span>
+                  </div>
+                  <h2 class="text-3xl font-bold text-stone-100 mb-1">${item.titulo}</h2>
+                  <p class="text-brand-ochre font-medium mb-4">${item.subtitulo}</p>
+                  <h4 class="text-lg font-semibold text-stone-200 mb-2">Lenda & História Ancestral</h4>
+                  <p class="text-stone-300 leading-relaxed text-sm">${item.lenda}</p>
+              </div>
+              <div>
+                  <img src="${item.imagem}" alt="${item.titulo}" class="rounded-xl shadow-md border border-[#354f43] w-full h-64 object-cover">
+              </div>
+          </div>
+        `;
+      }
+
+      function voltarParaAba() {
+        document.getElementById('tab-detalhe').classList.add('hidden');
+        document
+          .getElementById(`tab-${abaAtualAtiva}`)
+          .classList.remove('hidden');
+      }
+
+      function renderCards(gridId, apiItems, categoria) {
+        const grid = document.getElementById(gridId);
+        if (!grid) return;
+
+        const baseLocal = dadosLocais[categoria];
+
+        const tresItens = baseLocal.map((localItem, index) => {
+          const apiItem = Array.isArray(apiItems) ? apiItems[index] : null;
+          return {
+            titulo:
+              apiItem?.titulo ||
+              apiItem?.name ||
+              apiItem?.title ||
+              localItem.titulo,
+            subtitulo: localItem.subtitulo,
+            icone: localItem.icone,
+            descricao:
+              apiItem?.descricao ||
+              apiItem?.description ||
+              apiItem?.desc ||
+              localItem.descricao,
+          };
+        });
+
+        grid.innerHTML = tresItens
+          .map(
+            (item, index) => `
+            <div onclick="mostrarDetalhe('${categoria}', ${index})" class="bg-[#263831] p-6 rounded-2xl border border-[#354f43] shadow-md hover:border-brand-ochre cursor-pointer transition transform hover:-translate-y-1 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-[#1f2e27] text-brand-ochre text-xs font-bold px-3 py-1 rounded-full border border-[#354f43]">MACUXI</span>
+                        <span class="text-brand-ochre">${item.icone}</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-100 mb-1">${item.titulo}</h3>
+                    <p class="text-brand-ochre text-sm font-medium mb-3">${item.subtitulo}</p>
+                    <p class="text-stone-300 text-sm leading-relaxed">${item.descricao}</p>
+                </div>
+                <div class="mt-4 text-xs font-semibold text-brand-ochre flex items-center gap-1">
+                    Ver lenda e detalhes →
+                </div>
+            </div>
+        `
+          )
+          .join('');
+      }
+
+      async function fetchApiData() {
+        renderCards('entities-grid', null, 'entidades');
+        renderCards('gastronomia-grid', null, 'gastronomia');
+        renderCards('oficinas-grid', null, 'oficinas');
+
+        try {
+          const [entitiesRes, gasRes, ofRes] = await Promise.all([
+            fetch('/api/entities'),
+            fetch('/api/gastronomia'),
+            fetch('/api/oficinas'),
+          ]);
+
+          if (entitiesRes.ok)
+            renderCards('entities-grid', await entitiesRes.json(), 'entidades');
+          if (gasRes.ok)
+            renderCards('gastronomia-grid', await gasRes.json(), 'gastronomia');
+          if (ofRes.ok)
+            renderCards('oficinas-grid', await ofRes.json(), 'oficinas');
+        } catch (error) {
+          console.log('Modo estático/mock ativo.');
+        }
+      }
+
+      fetchApiData();
+    </script>
+  </body>
+</html>
