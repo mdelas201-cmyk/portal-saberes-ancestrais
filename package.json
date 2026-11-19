@@ -1,0 +1,19 @@
+{
+  "name": "portal-saberes-ancestrais",
+  "version": "1.0.0",
+  "description": "Portal de turismo de base comunitária da Comunidade Indígena Raposa I (povo Macuxi, Roraima)",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0"
+  }
+}

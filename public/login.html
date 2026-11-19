@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Login do Administrador | Portal Saberes Ancestrais</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                clay: '#B85E36',
+                ochre: '#D9822B',
+                sand: '#F4EAE1',
+                dark: '#1C1917',
+              },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-[#1f2e27] text-stone-100 font-sans min-h-screen flex items-center justify-center px-4"
+  >
+    <main class="w-full max-w-sm">
+      <div class="text-center mb-6">
+        <h1 class="text-2xl font-bold text-brand-sand">
+          Área do Administrador
+        </h1>
+        <p class="text-stone-300 text-sm mt-1">
+          Portal Saberes Ancestrais Macuxi
+        </p>
+      </div>
+
+      <form
+        id="login-form"
+        class="bg-[#263831] p-8 rounded-2xl border border-[#354f43] shadow-lg space-y-5"
+      >
+        <div>
+          <label for="usuario" class="block text-sm text-stone-300 mb-1"
+            >Usuário</label
+          >
+          <input
+            id="usuario"
+            name="usuario"
+            autocomplete="username"
+            required
+            class="w-full bg-[#1f2e27] border border-[#354f43] rounded-lg px-3 py-2 text-stone-100 focus:outline-none focus:border-brand-ochre"
+          />
+        </div>
+        <div>
+          <label for="senha" class="block text-sm text-stone-300 mb-1"
+            >Senha</label
+          >
+          <input
+            id="senha"
+            name="senha"
+            type="password"
+            autocomplete="current-password"
+            required
+            class="w-full bg-[#1f2e27] border border-[#354f43] rounded-lg px-3 py-2 text-stone-100 focus:outline-none focus:border-brand-ochre"
+          />
+        </div>
+        <button
+          id="submit-btn"
+          type="submit"
+          class="w-full bg-brand-clay hover:bg-brand-ochre text-white font-semibold px-4 py-3 rounded-lg transition disabled:opacity-60"
+        >
+          Entrar
+        </button>
+        <p id="login-msg" class="text-sm text-center text-red-400 hidden"></p>
+      </form>
+
+      <p class="text-center mt-6 text-sm">
+        <a href="/" class="text-brand-ochre hover:underline"
+          >← Voltar ao portal</a
+        >
+      </p>
+    </main>
+
+    <script>
+      const form = document.getElementById('login-form');
+      const msg = document.getElementById('login-msg');
+      const btn = document.getElementById('submit-btn');
+
+      // Se já estiver logado, vai direto ao painel
+      fetch('/api/admin/me').then((res) => {
+        if (res.ok) window.location.replace('/admin.html');
+      });
+
+      form.addEventListener('submit', async (ev) => {
+        ev.preventDefault();
+        msg.classList.add('hidden');
+        btn.disabled = true;
+        btn.textContent = 'Entrando...';
+        try {
+          const res = await fetch('/api/admin/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(Object.fromEntries(new FormData(form))),
+          });
+          const json = await res.json();
+          if (res.ok) {
+            window.location.replace('/admin.html');
+            return;
+          }
+          msg.textContent = json.message || 'Não foi possível entrar.';
+        } catch (e) {
+          msg.textContent = 'Erro de conexão. Tente novamente.';
+        }
+        msg.classList.remove('hidden');
+        btn.disabled = false;
+        btn.textContent = 'Entrar';
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,2506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal Saberes Ancestrais & Cosmologia de Roraima</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                terracotta: '#8B4513',
+                clay: '#B85E36',
+                ochre: '#D9822B',
+                sand: '#F4EAE1',
+                forest: '#2C4A3E',
+                sunset: '#E76F51',
+                dark: '#1C1917',
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      .pattern-bg {
+        background-color: #1f2e27;
+        background-image: radial-gradient(#2c4037 0.75px, transparent 0.75px),
+          radial-gradient(#2c4037 0.75px, #1f2e27 0.75px);
+        background-size: 30px 30px;
+        background-position: 0 0, 15px 15px;
+      }
+      /* Botões de edição: só aparecem para o gestor logado */
+      .gestor-only { display: none !important; }
+      body.modo-gestor .gestor-only { display: inline-flex !important; }
+    </style>
+  </head>
+  <body
+    class="bg-[#1f2e27] text-stone-100 font-sans pattern-bg min-h-screen flex flex-col"
+  >
+    <!-- HEADER / NAVIGATION -->
+    <header
+      class="bg-brand-dark text-white border-b-4 border-brand-ochre sticky top-0 z-50 shadow-md"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex items-center space-x-3">
+            <div class="bg-brand-clay p-2.5 rounded-lg text-white">
+              <i data-lucide="feather" class="w-7 h-7"></i>
+            </div>
+            <div>
+              <h1 class="text-xl font-bold tracking-tight text-brand-sand">
+                Portal Saberes Ancestrais Macuxi
+              </h1>
+              <p class="text-[11px] text-stone-400 hidden sm:block">
+                Comunidade Indígena Raposa I • Normandia - RR
+              </p>
+            </div>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <nav
+            class="hidden md:flex items-center space-x-6 text-sm font-medium"
+          >
+            <button
+              onclick="openTab('inicio')"
+              id="btn-inicio"
+              class="tab-btn text-brand-ochre font-bold transition"
+            >
+              Início
+            </button>
+            <button
+              onclick="openTab('gastronomia')"
+              id="btn-gastronomia"
+              class="tab-btn text-stone-300 hover:text-brand-ochre transition"
+            >
+              Gastronomia
+            </button>
+            <button
+              onclick="openTab('oficinas')"
+              id="btn-oficinas"
+              class="tab-btn text-stone-300 hover:text-brand-ochre transition"
+            >
+              Oficinas
+            </button>
+            <button
+              onclick="openTab('entidades')"
+              id="btn-entidades"
+              class="tab-btn text-stone-300 hover:text-brand-ochre transition"
+            >
+              Entidades Lendárias
+            </button>
+            <button
+              onclick="openTab('agendamento')"
+              id="btn-agendamento"
+              class="tab-btn text-stone-300 hover:text-brand-ochre transition"
+            >
+              Agendar
+            </button>
+            <a
+              href="#"
+              id="btn-login"
+              class="bg-brand-clay hover:bg-brand-ochre text-white px-4 py-2 rounded-lg transition shadow-sm"
+            >
+              Login
+            </a>
+          </nav>
+          <div class="md:hidden">
+            <button
+              id="mobile-menu-btn"
+              class="p-2 rounded-md text-stone-300 hover:text-white"
+            >
+              <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-stone-900 px-4 pt-2 pb-4 space-y-2 border-t border-stone-800"
+      >
+        <button
+          onclick="openTab('inicio'); toggleMobileMenu();"
+          class="block w-full text-left text-stone-300 hover:text-brand-ochre py-2"
+        >
+          Início
+        </button>
+        <button
+          onclick="openTab('gastronomia'); toggleMobileMenu();"
+          class="block w-full text-left text-stone-300 hover:text-brand-ochre py-2"
+        >
+          Gastronomia
+        </button>
+        <button
+          onclick="openTab('oficinas'); toggleMobileMenu();"
+          class="block w-full text-left text-stone-300 hover:text-brand-ochre py-2"
+        >
+          Oficinas
+        </button>
+        <button
+          onclick="openTab('entidades'); toggleMobileMenu();"
+          class="block w-full text-left text-stone-300 hover:text-brand-ochre py-2"
+        >
+          Entidades Lendárias
+        </button>
+        <button
+          onclick="openTab('agendamento'); toggleMobileMenu();"
+          class="block w-full text-left text-stone-300 hover:text-brand-ochre py-2"
+        >
+          Agendar Experiência
+        </button>
+        <button
+          type="button"
+          id="btn-login-mobile"
+          class="block w-full text-left text-brand-ochre font-semibold py-2"
+        >
+          Login
+        </button>
+      </div>
+    </header>
+
+    <!-- BARRA IMERSIVA DE ÁUDIO AMBIENTE -->
+    <div class="bg-[#18241e]/95 border-b border-[#354f43]">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs"
+      >
+        <div class="flex items-center gap-2.5 text-stone-300">
+          <span
+            class="inline-flex h-2 w-2 rounded-full bg-brand-ochre animate-pulse"
+          ></span>
+          <span id="audio-status-label">
+            Som Ambiente & Vivência Macuxi: pausado
+          </span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            id="btn-toggle-audio"
+            class="inline-flex items-center gap-1.5 bg-[#263831] hover:bg-[#354f43] text-amber-300 border border-[#354f43] px-3 py-1.5 rounded-lg font-semibold transition"
+          >
+            <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+            <span id="btn-toggle-audio-texto">Ouvir Som Ambiente</span>
+          </button>
+          <audio id="audio-ambiente" loop preload="none">
+            <!-- Coloque um arquivo em public/audio/ambiente-raposa.mp3 -->
+            <source src="./audio/ambiente-raposa.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN CONTAINER (ABAS) -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+      <section id="painel-gestor" class="hidden max-w-6xl mx-auto my-8 px-4">
+        <div
+          class="rounded-xl border border-amber-500/40 bg-neutral-900/90 p-6 text-amber-100 shadow-lg"
+        >
+          <div
+            class="flex flex-wrap items-center justify-between gap-4 border-b border-amber-500/20 pb-4"
+          >
+            <div>
+              <span
+                class="text-xs font-semibold uppercase tracking-wider text-amber-400"
+              >
+                Área Restrita • Gestor
+              </span>
+              <h2 class="text-xl font-bold text-white">
+                Painel de Gestão — Saberes Ancestrais Macuxi
+              </h2>
+            </div>
+            <span
+              class="rounded-full bg-amber-500/20 px-3 py-1 text-xs font-medium text-amber-300"
+            >
+              Modo Gestor Ativo
+            </span>
+          </div>
+
+          <div class="mt-4">
+            <a
+              href="/admin.html"
+              class="inline-block rounded-lg bg-brand-clay hover:bg-brand-ochre px-4 py-2 text-sm font-semibold text-white transition"
+            >
+              Ver agendamentos recebidos →
+            </a>
+          </div>
+
+          <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div class="rounded-lg border border-white/10 bg-white/5 p-4">
+              <h3 class="font-semibold text-white">Gastronomia</h3>
+              <p class="mt-1 text-sm text-neutral-300">
+                Gerenciar pratos, ingredientes e saberes culinários.
+              </p>
+            </div>
+            <div class="rounded-lg border border-white/10 bg-white/5 p-4">
+              <h3 class="font-semibold text-white">Oficinas</h3>
+              <p class="mt-1 text-sm text-neutral-300">
+                Organizar atividades, vivências e oficinas culturais.
+              </p>
+            </div>
+            <div class="rounded-lg border border-white/10 bg-white/5 p-4">
+              <h3 class="font-semibold text-white">Entidades Lendárias</h3>
+              <p class="mt-1 text-sm text-neutral-300">
+                Manter registros de narrativas e entidades tradicionais.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABA 1: INÍCIO (História, Carrossel, Vídeo e Guia Completo) -->
+      <section id="tab-inicio" class="tab-content">
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-10">
+            <span
+              class="inline-block bg-[#263831] text-brand-ochre border border-[#354f43] text-xs font-bold uppercase tracking-wider px-3.5 py-1 rounded-full mb-3"
+            >
+              Turismo de Base Comunitária • Roraima
+            </span>
+            <h2 class="text-4xl font-bold text-stone-100 mb-4">
+              Comunidade Indígena Raposa I
+            </h2>
+            <p class="text-lg text-stone-300 max-w-3xl mx-auto">
+              Guardiões da ancestralidade, da cultura viva e do turismo de base
+              comunitária no extremo norte do Brasil.
+            </p>
+          </div>
+
+          <!-- Bloco de História + Carrossel Interativo -->
+          <div
+            class="bg-[#263831] p-6 sm:p-8 rounded-2xl shadow-md mb-8 border border-[#354f43] grid grid-cols-1 lg:grid-cols-12 gap-6 items-center"
+          >
+            <div class="lg:col-span-7">
+              <h3 class="text-2xl font-bold text-brand-ochre mb-4">
+                História e Território
+              </h3>
+              <p class="text-stone-300 leading-relaxed mb-4">
+                Localizada no município de Normandia, em Roraima, na região da
+                Raposa Serra do Sol, a
+                <strong>Comunidade Indígena Raposa I</strong> é lar para o povo
+                <strong>Macuxi</strong>, um dos povos tradicionais que habita o
+                solo brasileiro há gerações. A comunidade preserva seu modo de
+                vida ancestral, mantendo vivos rituais sagrados fundamentais, como
+                a tradicional dança Parixara e os rituais de defumação.
+              </p>
+              <p class="text-stone-300 leading-relaxed">
+                Pioneira no turismo de base comunitária na região, a comunidade
+                abriu suas portas a partir de 2019 com o apoio de órgãos oficiais
+                como a FUNAI e o DETUR-RR, unindo a geração de renda alternativa à
+                conservação de sua sociobiodiversidade e práticas seculares.
+              </p>
+            </div>
+
+            <div class="lg:col-span-5 space-y-3">
+              <div
+                class="relative rounded-xl overflow-hidden border border-[#354f43] bg-[#1f2e27]"
+              >
+                <img
+                  id="inicio-carrossel-img"
+                  src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=900&q=80"
+                  alt="Paisagem e vivência na Raposa I"
+                  onclick="abrirLightbox(FOTOS_INICIO.map((f) => f.url), inicioCarrosselIdx)"
+                  class="w-full h-56 object-cover cursor-zoom-in"
+                />
+                <button
+                  type="button"
+                  id="inicio-prev"
+                  aria-label="Foto anterior do início"
+                  class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/65 hover:bg-black/85 text-white w-8 h-8 rounded-full flex items-center justify-center border border-white/20"
+                >
+                  ←
+                </button>
+                <button
+                  type="button"
+                  id="inicio-next"
+                  aria-label="Próxima foto do início"
+                  class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/65 hover:bg-black/85 text-white w-8 h-8 rounded-full flex items-center justify-center border border-white/20"
+                >
+                  →
+                </button>
+                <span
+                  id="inicio-contador"
+                  class="absolute bottom-2 left-2 bg-black/75 text-stone-100 text-[11px] font-semibold px-2.5 py-0.5 rounded-full"
+                >
+                  1 / 3
+                </span>
+              </div>
+              <p
+                id="inicio-legenda"
+                class="text-xs text-stone-300 text-center italic"
+              >
+                Lavrado, serras e memória viva do povo Macuxi.
+              </p>
+            </div>
+          </div>
+
+          <!-- Bloco de Vídeo / Vivência Audiovisual -->
+          <div
+            class="bg-[#263831] p-6 sm:p-8 rounded-2xl shadow-md mb-10 border border-[#354f43]"
+          >
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <span
+                  class="text-xs font-semibold uppercase tracking-wider text-brand-ochre"
+                >
+                  Experiência Audiovisual
+                </span>
+                <h3 class="text-xl font-bold text-stone-100">
+                  Panorama da Vivência na Raposa I
+                </h3>
+              </div>
+              <span class="text-xs text-stone-400">
+                Vídeo de apresentação / registro cultural
+              </span>
+            </div>
+
+            <div
+              class="rounded-xl overflow-hidden border border-[#354f43] bg-black"
+            >
+              <video
+                id="video-portal-inicio"
+                controls
+                preload="metadata"
+              >
+                <!-- Coloque seu arquivo em public/videos/vivencia-raposa1.mp4 -->
+                <source
+                  src="./videos/vivencia-raposa1.mp4"
+                  type="video/mp4"
+                />
+                Seu navegador não suporta reprodução de vídeo HTML5.
+              </video>
+            </div>
+            <p class="text-xs text-stone-400 mt-2">
+              Coloque seu arquivo de vídeo em
+              <code class="text-amber-300">public/videos/vivencia-raposa1.mp4</code>
+              e áudios em <code class="text-amber-300">public/audio/</code>.
+            </p>
+          </div>
+
+          <!-- Guia Prático Completo (6 Cards) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <div
+              class="bg-[#263831] p-6 rounded-xl border border-[#354f43] shadow-md"
+            >
+              <h4
+                class="text-xl font-semibold text-stone-100 mb-3 flex items-center gap-2"
+              >
+                <i data-lucide="map-pin" class="w-5 h-5 text-brand-ochre"></i>
+                Como Chegar
+              </h4>
+              <p class="text-stone-300 text-sm leading-relaxed">
+                Fica a cerca de 240 km de Boa Vista. O trajeto de carro segue
+                pela BR-401 sentido Normandia, entrando na BR-433 (próximo ao
+                Lago Caracaranã). Recomenda-se o uso de veículos com tração 4x4.
+              </p>
+            </div>
+
+            <div
+              class="bg-[#263831] p-6 rounded-xl border border-[#354f43] shadow-md"
+            >
+              <h4
+                class="text-xl font-semibold text-stone-100 mb-3 flex items-center gap-2"
+              >
+                <i data-lucide="home" class="w-5 h-5 text-brand-ochre"></i>
+                Hospedagem
+              </h4>
+              <p class="text-stone-300 text-sm leading-relaxed">
+                A hospedagem ocorre de forma imersiva nas residências das
+                famílias anfitriãs (em redes ou barracas), proporcionando
+                convivência direta com o cotidiano da comunidade.
+              </p>
+            </div>
+
+            <div
+              class="bg-[#263831] p-6 rounded-xl border border-[#354f43] shadow-md"
+            >
+              <h4
+                class="text-xl font-semibold text-stone-100 mb-3 flex items-center gap-2"
+              >
+                <i data-lucide="utensils" class="w-5 h-5 text-brand-ochre"></i>
+                Onde se Alimentar
+              </h4>
+              <p class="text-stone-300 text-sm leading-relaxed">
+                A alimentação ocorre na própria comunidade, junto às famílias
+                anfitriãs da Raposa I. Não há outras opções de alimentação,
+                assim que restrições alimentares devem ser informadas com
+                antecedência.
+              </p>
+            </div>
+
+            <div
+              class="bg-[#263831] p-6 rounded-xl border border-[#354f43] shadow-md"
+            >
+              <h4
+                class="text-xl font-semibold text-stone-100 mb-3 flex items-center gap-2"
+              >
+                <i data-lucide="calendar" class="w-5 h-5 text-brand-ochre"></i>
+                Melhores Meses para Visitar
+              </h4>
+              <p class="text-stone-300 text-sm leading-relaxed">
+                O melhor período para visitar o povo Macuxi é entre
+                <strong>outubro e março</strong>, devido à estação mais seca.
+                Ainda assim, fique atento a intempéries. Os dias de chuva mais
+                frequentes ocorrem entre maio e agosto.
+              </p>
+            </div>
+
+            <div
+              class="bg-[#263831] p-6 rounded-xl border border-[#354f43] shadow-md"
+            >
+              <h4
+                class="text-xl font-semibold text-stone-100 mb-3 flex items-center gap-2"
+              >
+                <i data-lucide="backpack" class="w-5 h-5 text-brand-ochre"></i>
+                O Que Levar
+              </h4>
+              <p class="text-stone-300 text-sm leading-relaxed">
+                Leve roupa de banho, toalhas, travesseiros, roupa de cama, itens
+                de higiene, sacos de lixo, protetor solar e repelente. Inclua
+                lanches, muita água, sombrinha para caminhadas e embale a mala
+                em saco de lixo para a viagem.
+              </p>
+            </div>
+
+            <div
+              class="bg-[#263831] p-6 rounded-xl border border-[#354f43] shadow-md"
+            >
+              <h4
+                class="text-xl font-semibold text-stone-100 mb-3 flex items-center gap-2"
+              >
+                <i data-lucide="phone" class="w-5 h-5 text-brand-ochre"></i>
+                Com Quem Falar
+              </h4>
+              <p class="text-stone-300 text-sm leading-relaxed mb-2">
+                <strong>Coordenador de Turismo (Enoque Raposo):</strong><br />
+                Instagram:
+                <a
+                  href="https://instagram.com/etnoturismo.raposa23"
+                  target="_blank"
+                  class="text-brand-ochre hover:underline"
+                  >@etnoturismo.raposa23</a
+                >
+                | WhatsApp: (95) 98426-2222
+              </p>
+              <p class="text-stone-300 text-sm leading-relaxed">
+                <strong>Guia Parceiro (Rocky Almeida):</strong><br />
+                Instagram:
+                <a
+                  href="https://instagram.com/rockpasseiosturisticosrr"
+                  target="_blank"
+                  class="text-brand-ochre hover:underline"
+                  >@rockpasseiosturisticosrr</a
+                >
+                | WhatsApp: (95) 99148-7914
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABA 2: GASTRONOMIA -->
+      <section id="tab-gastronomia" class="tab-content hidden">
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold text-stone-100 mb-2">
+            Gastronomia Tradicional
+          </h2>
+          <p class="text-stone-300">
+            Sabores ancestrais da Raposa I: damurida, caxiri e beiju. Passe as
+            fotos no carrossel ou clique no card para ler a lenda, ver o vídeo
+            e ouvir o áudio.
+          </p>
+          <button
+            type="button"
+            onclick="abrirEditor('gastronomia', null)"
+            class="gestor-only items-center gap-2 mt-4 bg-brand-clay hover:bg-brand-ochre text-white text-sm font-semibold px-4 py-2 rounded-lg transition"
+          >
+            ＋ Adicionar card
+          </button>
+        </div>
+        <div
+          id="gastronomia-grid"
+          class="grid grid-cols-1 md:grid-cols-3 gap-8"
+        ></div>
+      </section>
+
+      <!-- ABA 3: OFICINAS -->
+      <section id="tab-oficinas" class="tab-content hidden">
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold text-stone-100 mb-2">
+            Oficinas & Saberes Práticos
+          </h2>
+          <p class="text-stone-300">
+            Vivências de panelas de barro, trilhas e arco e flecha. Explore os
+            carrosséis, lendas e registros multimídia.
+          </p>
+          <button
+            type="button"
+            onclick="abrirEditor('oficinas', null)"
+            class="gestor-only items-center gap-2 mt-4 bg-brand-clay hover:bg-brand-ochre text-white text-sm font-semibold px-4 py-2 rounded-lg transition"
+          >
+            ＋ Adicionar card
+          </button>
+        </div>
+        <div id="oficinas-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+      </section>
+
+      <!-- ABA 4: ENTIDADES LENDÁRIAS -->
+      <section id="tab-entidades" class="tab-content hidden">
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold text-stone-100 mb-2">
+            Entidades Lendárias & Cosmologia
+          </h2>
+          <p class="text-stone-300">
+            Lendas, narrativas e conhecimentos profundos da cosmovisão Macuxi.
+          </p>
+          <button
+            type="button"
+            onclick="abrirEditor('entidades', null)"
+            class="gestor-only items-center gap-2 mt-4 bg-brand-clay hover:bg-brand-ochre text-white text-sm font-semibold px-4 py-2 rounded-lg transition"
+          >
+            ＋ Adicionar card
+          </button>
+        </div>
+        <div id="entities-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+      </section>
+
+      <!-- ABA 5: AGENDAMENTO -->
+      <section id="tab-agendamento" class="tab-content hidden">
+        <div class="max-w-2xl mx-auto">
+          <div class="mb-8 text-center">
+            <h2 class="text-3xl font-bold text-stone-100 mb-2">
+              Agendar Experiência
+            </h2>
+            <p class="text-stone-300">
+              Envie um pré-agendamento. A comunidade entrará em contato para
+              confirmar datas e detalhes.
+            </p>
+          </div>
+          <form
+            id="booking-form"
+            class="bg-[#263831] p-8 rounded-2xl border border-[#354f43] shadow-lg space-y-5"
+          >
+            <div>
+              <label for="nome" class="block text-sm text-stone-300 mb-1"
+                >Nome completo *</label
+              >
+              <input
+                id="nome"
+                name="nome"
+                required
+                maxlength="120"
+                class="w-full bg-[#1f2e27] border border-[#354f43] rounded-lg px-3 py-2 text-stone-100 focus:outline-none focus:border-brand-ochre"
+              />
+            </div>
+            <div>
+              <label for="contato" class="block text-sm text-stone-300 mb-1"
+                >WhatsApp ou e-mail *</label
+              >
+              <input
+                id="contato"
+                name="contato"
+                required
+                maxlength="120"
+                class="w-full bg-[#1f2e27] border border-[#354f43] rounded-lg px-3 py-2 text-stone-100 focus:outline-none focus:border-brand-ochre"
+              />
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="data" class="block text-sm text-stone-300 mb-1"
+                  >Data desejada *</label
+                >
+                <input
+                  id="data"
+                  name="data"
+                  type="date"
+                  required
+                  class="w-full bg-[#1f2e27] border border-[#354f43] rounded-lg px-3 py-2 text-stone-100 focus:outline-none focus:border-brand-ochre"
+                />
+              </div>
+              <div>
+                <label for="pessoas" class="block text-sm text-stone-300 mb-1"
+                  >Número de pessoas</label
+                >
+                <input
+                  id="pessoas"
+                  name="pessoas"
+                  type="number"
+                  min="1"
+                  max="100"
+                  value="1"
+                  class="w-full bg-[#1f2e27] border border-[#354f43] rounded-lg px-3 py-2 text-stone-100 focus:outline-none focus:border-brand-ochre"
+                />
+              </div>
+            </div>
+            <div>
+              <label for="experiencia" class="block text-sm text-stone-300 mb-1"
+                >Experiência de interesse</label
+              >
+              <select
+                id="experiencia"
+                name="experiencia"
+                class="w-full bg-[#1f2e27] border border-[#354f43] rounded-lg px-3 py-2 text-stone-100 focus:outline-none focus:border-brand-ochre"
+              >
+                <option>Panela de Barro</option>
+                <option>Trilha da Cachoeira</option>
+                <option>Arco e Flecha</option>
+                <option>Gastronomia tradicional</option>
+                <option>Parixara</option>
+              </select>
+            </div>
+            <div>
+              <label for="restricoes" class="block text-sm text-stone-300 mb-1"
+                >Restrições alimentares</label
+              >
+              <textarea
+                id="restricoes"
+                name="restricoes"
+                rows="3"
+                maxlength="500"
+                class="w-full bg-[#1f2e27] border border-[#354f43] rounded-lg px-3 py-2 text-stone-100 focus:outline-none focus:border-brand-ochre"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-brand-clay hover:bg-brand-ochre text-white font-semibold px-4 py-3 rounded-lg transition"
+            >
+              Enviar pré-agendamento
+            </button>
+            <p id="booking-msg" class="text-sm text-center hidden"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- ABA DEDICADA DE DETALHES -->
+      <section id="tab-detalhe" class="tab-content hidden">
+        <button
+          onclick="voltarParaAba()"
+          class="mb-6 bg-[#263831] hover:bg-[#354f43] text-brand-ochre px-4 py-2 rounded-lg border border-[#354f43] transition flex items-center gap-2 text-sm font-medium"
+        >
+          ← Voltar
+        </button>
+        <div
+          id="detalhe-conteudo"
+          class="bg-[#263831] p-6 sm:p-8 rounded-2xl border border-[#354f43] shadow-lg max-w-5xl mx-auto"
+        ></div>
+      </section>
+
+      <!-- TIRA-DÚVIDAS E AVALIAÇÕES (só com login) -->
+      <section
+        id="secao-chat-experiencias"
+        class="max-w-5xl mx-auto mt-14 bg-[#263831] border border-[#354f43] rounded-2xl p-6 sm:p-8 shadow-lg"
+      >
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#354f43] pb-4 mb-6">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-brand-ochre">
+              Fale com a gestão
+            </span>
+            <h2 class="text-2xl font-bold text-stone-100 mt-0.5">
+              Tira-Dúvidas &amp; Avaliações
+            </h2>
+          </div>
+          <span class="text-xs text-stone-300 bg-[#1f2e27] border border-[#354f43] px-3 py-1.5 rounded-lg">
+            Envio só com login
+          </span>
+        </div>
+
+        <!-- Aviso para visitantes sem conta -->
+        <div
+          id="chat-aviso-visitante"
+          class="mb-6 rounded-xl bg-[#1f2e27] border border-amber-500/30 p-4 flex flex-wrap items-center justify-between gap-3"
+        >
+          <p class="text-sm text-stone-300">
+            Qualquer pessoa pode ler. Para <strong>tirar uma dúvida</strong> ou <strong>deixar sua avaliação</strong>, é obrigatório <strong>entrar ou criar uma conta</strong>.
+          </p>
+          <button
+            type="button"
+            id="chat-btn-abrir-auth"
+            class="bg-brand-clay hover:bg-brand-ochre text-white text-xs font-semibold px-4 py-2 rounded-lg transition"
+          >
+            Entrar ou Criar Conta
+          </button>
+        </div>
+
+        <!-- Lista de mensagens do chat -->
+        <div
+          id="chat-lista-mensagens"
+          class="space-y-3 max-h-96 overflow-y-auto pr-1 mb-6 bg-[#1f2e27]/60 border border-[#354f43] rounded-xl p-4"
+        >
+          <p class="text-sm text-stone-400">Carregando mensagens...</p>
+        </div>
+
+        <!-- Formulário de envio (para usuários logados) -->
+        <form id="form-chat-comentario" class="hidden space-y-3 bg-[#1f2e27] p-4 rounded-xl border border-[#354f43]">
+          <div class="flex items-center justify-between gap-3">
+            <span id="chat-usuario-badge" class="text-xs font-semibold text-amber-300"></span>
+            <span id="chat-feedback" class="text-xs text-amber-300"></span>
+          </div>
+
+          <div class="flex gap-2">
+            <input
+              type="text"
+              id="chat-mensagem-input"
+              maxlength="600"
+              required
+              placeholder="Escreva sua dúvida ou avaliação sobre a experiência..."
+              class="flex-grow px-3.5 py-2.5 rounded-lg bg-[#263831] border border-[#354f43] text-sm text-stone-100 placeholder-stone-500 focus:outline-none focus:border-brand-ochre"
+            />
+            <button
+              type="submit"
+              class="bg-brand-clay hover:bg-brand-ochre text-white text-xs font-semibold px-5 py-2.5 rounded-lg shrink-0 transition"
+            >
+              Enviar
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <!-- EDITOR DE CARD (somente gestor) -->
+    <div
+      id="modal-editor"
+      class="hidden fixed inset-0 bg-black/80 z-[60] flex items-start sm:items-center justify-center p-4 overflow-y-auto"
+    >
+      <form
+        id="form-editor"
+        class="bg-[#263831] border border-[#354f43] rounded-2xl shadow-2xl w-full max-w-2xl p-6 my-4"
+        onsubmit="salvarEditor(event)"
+      >
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-brand-ochre" id="editor-categoria"></span>
+            <h3 class="text-xl font-bold text-stone-100" id="editor-titulo-modal">Editar card</h3>
+          </div>
+          <button type="button" onclick="fecharEditor()" class="text-stone-400 hover:text-white text-2xl leading-none" aria-label="Fechar">×</button>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-stone-300 mb-1" for="ed-titulo">Título</label>
+            <input id="ed-titulo" maxlength="120" required class="w-full bg-[#1f2e27] border border-[#354f43] rounded-lg px-3 py-2 text-stone-100 focus:outline-none focus:border-brand-ochre" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="sm:col-span-2">
+              <label class="block text-sm font-medium text-stone-300 mb-1" for="ed-subtitulo">Subtítulo</label>
+              <input id="ed-subtitulo" maxlength="120" class="w-full bg-[#1f2e27] border border-[#354f43] rounded-lg px-3 py-2 text-stone-100 focus:outline-none focus:border-brand-ochre" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-stone-300 mb-1" for="ed-icone">Ícone (emoji)</label>
+              <input id="ed-icone" maxlength="8" placeholder="🔥" class="w-full bg-[#1f2e27] border border-[#354f43] rounded-lg px-3 py-2 text-stone-100 focus:outline-none focus:border-brand-ochre" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-stone-300 mb-1" for="ed-descricao">Texto curto (aparece no card)</label>
+            <textarea id="ed-descricao" rows="3" maxlength="600" class="w-full bg-[#1f2e27] border border-[#354f43] rounded-lg px-3 py-2 text-stone-100 focus:outline-none focus:border-brand-ochre"></textarea>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-stone-300 mb-1" for="ed-lenda">Lenda / Texto completo (aparece ao abrir o card)</label>
+            <textarea id="ed-lenda" rows="5" maxlength="2000" class="w-full bg-[#1f2e27] border border-[#354f43] rounded-lg px-3 py-2 text-stone-100 focus:outline-none focus:border-brand-ochre"></textarea>
+          </div>
+
+          <div class="border-t border-[#354f43] pt-4 space-y-4">
+            <div>
+              <span class="block text-sm font-medium text-stone-300 mb-1">Vídeo do conteúdo</span>
+              <div class="flex flex-wrap items-center gap-3">
+                <label class="cursor-pointer bg-[#1f2e27] hover:bg-[#2c4037] border border-[#354f43] text-brand-ochre text-sm font-semibold px-4 py-2 rounded-lg transition">
+                  🎬 Enviar vídeo
+                  <input id="ed-video-arquivo" type="file" accept="video/mp4,video/webm" class="hidden" />
+                </label>
+                <span id="ed-video-info" class="text-xs text-stone-400">Nenhum vídeo cadastrado.</span>
+                <button type="button" id="ed-video-remover" class="hidden text-xs text-red-300 hover:text-red-200">Remover vídeo</button>
+              </div>
+              <p class="text-xs text-stone-500 mt-1">MP4 ou WebM • até 100 MB</p>
+            </div>
+            <div>
+              <span class="block text-sm font-medium text-stone-300 mb-1">Áudio do conteúdo</span>
+              <div class="flex flex-wrap items-center gap-3">
+                <label class="cursor-pointer bg-[#1f2e27] hover:bg-[#2c4037] border border-[#354f43] text-brand-ochre text-sm font-semibold px-4 py-2 rounded-lg transition">
+                  🎧 Enviar áudio
+                  <input id="ed-audio-arquivo" type="file" accept="audio/mpeg,audio/mp4,audio/aac,audio/ogg,audio/wav,audio/webm" class="hidden" />
+                </label>
+                <span id="ed-audio-info" class="text-xs text-stone-400">Nenhum áudio cadastrado.</span>
+                <button type="button" id="ed-audio-remover" class="hidden text-xs text-red-300 hover:text-red-200">Remover áudio</button>
+              </div>
+              <p class="text-xs text-stone-500 mt-1">MP3, M4A, AAC, OGG, WAV ou WebM • até 100 MB</p>
+            </div>
+            <p id="ed-midia-status" class="text-xs text-stone-400" aria-live="polite"></p>
+          </div>
+
+          <div>
+            <span class="block text-sm font-medium text-stone-300 mb-1">Fotos (a primeira é a capa)</span>
+            <div id="ed-fotos" class="grid grid-cols-3 sm:grid-cols-4 gap-3 mb-3"></div>
+            <div class="flex flex-wrap items-center gap-3">
+              <label class="cursor-pointer bg-[#1f2e27] hover:bg-[#2c4037] border border-[#354f43] text-brand-ochre text-sm font-semibold px-4 py-2 rounded-lg transition">
+                📷 Enviar foto
+                <input id="ed-arquivo" type="file" accept="image/jpeg,image/png,image/webp" multiple class="hidden" />
+              </label>
+              <span class="text-xs text-stone-400">ou cole um link:</span>
+              <input id="ed-link" type="url" placeholder="https://..." class="flex-1 min-w-[10rem] bg-[#1f2e27] border border-[#354f43] rounded-lg px-3 py-2 text-sm text-stone-100 focus:outline-none focus:border-brand-ochre" />
+              <button type="button" id="ed-link-add" class="bg-[#1f2e27] hover:bg-[#2c4037] border border-[#354f43] text-brand-ochre text-sm font-semibold px-3 py-2 rounded-lg transition">Adicionar</button>
+            </div>
+            <p id="ed-foto-status" class="text-xs text-stone-400 mt-2"></p>
+          </div>
+        </div>
+
+        <p id="ed-erro" class="text-red-400 text-sm mt-4 hidden"></p>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 mt-6">
+          <button type="button" id="ed-excluir" onclick="excluirCard()" class="text-red-400 hover:text-red-300 text-sm font-semibold px-3 py-2">🗑 Excluir card</button>
+          <div class="flex gap-3 ml-auto">
+            <button type="button" onclick="fecharEditor()" class="bg-[#1f2e27] hover:bg-[#2c4037] text-stone-200 px-4 py-2 rounded-lg text-sm">Cancelar</button>
+            <button type="submit" id="ed-salvar" class="bg-brand-clay hover:bg-brand-ochre text-white font-semibold px-5 py-2 rounded-lg text-sm transition">Salvar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div
+      id="modal-lightbox"
+      class="hidden fixed inset-0 bg-black/90 z-50 flex flex-col items-center justify-center p-4"
+    >
+      <div class="w-full max-w-5xl flex items-center justify-between mb-3 text-stone-200">
+        <span id="lightbox-contador" class="text-xs font-semibold bg-white/10 px-3 py-1 rounded-full">
+          1 / 1
+        </span>
+        <div class="flex items-center gap-2">
+          <a
+            id="lightbox-nova-aba"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition"
+          >
+            Abrir em nova aba ↗
+          </a>
+          <button
+            type="button"
+            id="lightbox-fechar"
+            class="text-2xl leading-none px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white"
+            aria-label="Fechar imagem ampliada"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+
+      <div class="relative w-full max-w-5xl flex items-center justify-center">
+        <button
+          type="button"
+          id="lightbox-prev"
+          class="bg-black/60 hover:bg-black/85 text-white border border-white/20 w-10 h-10 rounded-full flex items-center justify-center mr-3 shrink-0"
+          aria-label="Foto anterior"
+        >
+          ←
+        </button>
+        <img
+          id="lightbox-img"
+          src=""
+          alt="Foto ampliada"
+          class="max-h-[78vh] max-w-full rounded-xl object-contain shadow-2xl border border-white/10"
+        />
+        <button
+          type="button"
+          id="lightbox-next"
+          class="bg-black/60 hover:bg-black/85 text-white border border-white/20 w-10 h-10 rounded-full flex items-center justify-center ml-3 shrink-0"
+          aria-label="Próxima foto"
+        >
+          →
+        </button>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer
+      class="bg-brand-dark text-stone-400 py-8 border-t border-stone-800 mt-auto"
+    >
+      <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+        <p>
+          &copy; 2026 Portal Saberes Ancestrais Macuxi - Comunidade Indígena
+          Raposa I.
+        </p>
+      </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+      lucide.createIcons();
+
+      const API_ORIGIN_URL = '/api';
+
+      const IMAGEM_PADRAO_PORTAL =
+        'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80';
+
+      let abaAtualAtiva = 'inicio';
+
+      // --- ÁUDIO AMBIENTE ---
+      const audioAmbiente = document.getElementById('audio-ambiente');
+      const btnToggleAudio = document.getElementById('btn-toggle-audio');
+      const btnToggleAudioTexto = document.getElementById(
+        'btn-toggle-audio-texto'
+      );
+      const audioStatusLabel = document.getElementById('audio-status-label');
+
+      function atualizarEstadoBotaoAudio(tocando) {
+        if (btnToggleAudioTexto) {
+          btnToggleAudioTexto.textContent = tocando
+            ? 'Pausar Som Ambiente'
+            : 'Ouvir Som Ambiente';
+        }
+        if (audioStatusLabel) {
+          audioStatusLabel.textContent = tocando
+            ? 'Som Ambiente & Vivência Macuxi: reproduzindo'
+            : 'Som Ambiente & Vivência Macuxi: pausado';
+        }
+      }
+
+      btnToggleAudio?.addEventListener('click', async () => {
+        if (!audioAmbiente) return;
+        try {
+          if (audioAmbiente.paused) {
+            await audioAmbiente.play();
+            atualizarEstadoBotaoAudio(true);
+          } else {
+            audioAmbiente.pause();
+            atualizarEstadoBotaoAudio(false);
+          }
+        } catch (_) {
+          if (audioStatusLabel) {
+            audioStatusLabel.textContent =
+              'Adicione um arquivo de áudio em public/audio/ambiente-raposa.mp3 para reproduzir.';
+          }
+        }
+      });
+
+      // --- CARROSSEL DA ABA INÍCIO ---
+      const FOTOS_INICIO = [
+        {
+          url: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=900&q=80',
+          legenda: 'Lavrado, serras e memória viva do povo Macuxi.',
+        },
+        {
+          url: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=80',
+          legenda: 'Trilhas e conservação da sociobiodiversidade local.',
+        },
+        {
+          url: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=900&q=80',
+          legenda: 'Respeito às águas, matas e ciclos da natureza.',
+        },
+      ];
+      let inicioCarrosselIdx = 0;
+
+      function renderInicioCarrossel() {
+        const atual = FOTOS_INICIO[inicioCarrosselIdx] || FOTOS_INICIO[0];
+        const imgEl = document.getElementById('inicio-carrossel-img');
+        const contEl = document.getElementById('inicio-contador');
+        const legEl = document.getElementById('inicio-legenda');
+        if (imgEl) imgEl.src = atual.url;
+        if (contEl) {
+          contEl.textContent = `${inicioCarrosselIdx + 1} / ${FOTOS_INICIO.length}`;
+        }
+        if (legEl) legEl.textContent = atual.legenda;
+      }
+
+      document.getElementById('inicio-prev')?.addEventListener('click', () => {
+        inicioCarrosselIdx =
+          (inicioCarrosselIdx - 1 + FOTOS_INICIO.length) % FOTOS_INICIO.length;
+        renderInicioCarrossel();
+      });
+      document.getElementById('inicio-next')?.addEventListener('click', () => {
+        inicioCarrosselIdx = (inicioCarrosselIdx + 1) % FOTOS_INICIO.length;
+        renderInicioCarrossel();
+      });
+
+      // --- LIGHTBOX ---
+      let lightboxFotos = [];
+      let lightboxIndice = 0;
+
+      function atualizarLightbox() {
+        if (!lightboxFotos.length) return;
+        const url = lightboxFotos[lightboxIndice];
+        const imgEl = document.getElementById('lightbox-img');
+        const contadorEl = document.getElementById('lightbox-contador');
+        const linkEl = document.getElementById('lightbox-nova-aba');
+        if (imgEl) imgEl.src = url;
+        if (contadorEl) {
+          contadorEl.textContent = `${lightboxIndice + 1} / ${lightboxFotos.length}`;
+        }
+        if (linkEl) linkEl.href = url;
+      }
+
+      function abrirLightbox(fotos, indiceInicial = 0) {
+        lightboxFotos = Array.isArray(fotos) && fotos.length ? fotos : [IMAGEM_PADRAO_PORTAL];
+        lightboxIndice = Math.max(0, Math.min(indiceInicial, lightboxFotos.length - 1));
+        atualizarLightbox();
+        document.getElementById('modal-lightbox')?.classList.remove('hidden');
+      }
+
+      function fecharLightbox() {
+        document.getElementById('modal-lightbox')?.classList.add('hidden');
+      }
+
+      document.getElementById('lightbox-fechar')?.addEventListener('click', fecharLightbox);
+      document.getElementById('lightbox-prev')?.addEventListener('click', () => {
+        if (!lightboxFotos.length) return;
+        lightboxIndice = (lightboxIndice - 1 + lightboxFotos.length) % lightboxFotos.length;
+        atualizarLightbox();
+      });
+      document.getElementById('lightbox-next')?.addEventListener('click', () => {
+        if (!lightboxFotos.length) return;
+        lightboxIndice = (lightboxIndice + 1) % lightboxFotos.length;
+        atualizarLightbox();
+      });
+      document.getElementById('modal-lightbox')?.addEventListener('click', (e) => {
+        if (e.target.id === 'modal-lightbox') fecharLightbox();
+      });
+      document.addEventListener('keydown', (e) => {
+        const aberto = !document.getElementById('modal-lightbox')?.classList.contains('hidden');
+        if (!aberto) return;
+        if (e.key === 'Escape') fecharLightbox();
+        if (e.key === 'ArrowLeft') {
+          lightboxIndice = (lightboxIndice - 1 + lightboxFotos.length) % lightboxFotos.length;
+          atualizarLightbox();
+        }
+        if (e.key === 'ArrowRight') {
+          lightboxIndice = (lightboxIndice + 1) % lightboxFotos.length;
+          atualizarLightbox();
+        }
+      });
+
+      function openTab(tabName) {
+        abaAtualAtiva = tabName;
+        document.querySelectorAll('.tab-content').forEach((section) => {
+          section.classList.add('hidden');
+        });
+
+        document.querySelectorAll('.tab-btn').forEach((btn) => {
+          btn.classList.remove('text-brand-ochre', 'font-bold');
+          btn.classList.add('text-stone-300');
+        });
+
+        const activeSection = document.getElementById(`tab-${tabName}`);
+        if (activeSection) {
+          activeSection.classList.remove('hidden');
+        }
+
+        const activeBtn = document.getElementById(`btn-${tabName}`);
+        if (activeBtn) {
+          activeBtn.classList.remove('text-stone-300');
+          activeBtn.classList.add('text-brand-ochre', 'font-bold');
+        }
+      }
+
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      function toggleMobileMenu() {
+        mobileMenu.classList.toggle('hidden');
+      }
+
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+      }
+
+      // --- DADOS COM CARROSSEL, LENDAS DEDICADAS, ÁUDIO E VÍDEO ---
+      const dadosLocais = {
+        entidades: [
+          {
+            id: 1,
+            titulo: 'Parixara',
+            subtitulo: 'Ritual Sagrado e Dança Ancestral',
+            icone: '✨',
+            descricao:
+              'Ritual sagrado de agradecimento em forma de dança e oração pela terra, pelos alimentos e pelo ciclo natural da vida.',
+            imagem:
+              'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80',
+            imagens: [
+              'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80',
+              'https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=800&q=80',
+              'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80',
+            ],
+            lendaTitulo: 'A Dança que Renova o Fôlego da Terra',
+            lenda:
+              'Na tradição Macuxi, o Parixara é um agradecimento em forma de ritual e oração pela terra, pelos alimentos e por tudo aquilo que sustenta o ciclo natural da vida. Os passos ritmados e os cantos entoados sem amplificação elétrica purificam os caminhos, afastam o que pesa sobre a comunidade e renovam o vínculo com os mais velhos e com a natureza. Participar ou assistir com respeito é compreender que a cultura viva também é proteção espiritual do território.',
+          },
+          {
+            id: 2,
+            titulo: 'Serra do Arco-Íris',
+            subtitulo: 'Paisagem Sagrada e História',
+            icone: '☀️',
+            descricao:
+              'Formação natural de grande importância cultural, onde condutores locais compartilham histórias ancestrais do povo Macuxi.',
+            imagem:
+              'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80',
+            imagens: [
+              'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80',
+              'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80',
+            ],
+            lendaTitulo: 'Memórias Gravadas na Geografia do Lavrado',
+            lenda:
+              'Do alto da serra e dos mirantes da região, é possível avistar as paisagens, caminhos e vilas do entorno enquanto os condutores locais partilham histórias que ligam a geografia às origens do povo Macuxi. Cada elevação, pedra e mudança de luz carrega ensinamentos transmitidos oralmente ao longo de gerações, convidando o visitante a olhar a paisagem não apenas como cenário, mas como arquivo vivo.',
+          },
+          {
+            id: 3,
+            titulo: 'Espíritos da Mata e das Águas',
+            subtitulo: 'Guardiões da Sociobiodiversidade',
+            icone: '🌙',
+            descricao:
+              'Entidades que zelam pela conservação dos rios, lagos e áreas verdes, protegendo a biodiversidade da região.',
+            imagem:
+              'https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=800&q=80',
+            imagens: [
+              'https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=800&q=80',
+              'https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&w=800&q=80',
+            ],
+            lendaTitulo: 'Os Guardiões do Equilíbrio entre Céu, Mata e Água',
+            lenda:
+              'Na cosmovisão Macuxi, os seres e espíritos que habitam as matas, os lagos e as águas da Raposa I são guardiões do equilíbrio ecológico e espiritual. A tradição ensina que nada deve ser retirado com ganância ou descuido: a caça, a pesca e o convívio com a natureza seguem regras de respeito e reciprocidade. Essa visão ancestral sustenta até hoje a conservação da sociobiodiversidade local.',
+          },
+        ],
+        gastronomia: [
+          {
+            id: 1,
+            titulo: 'Damurida',
+            subtitulo: 'A Iguaria Principal Macuxi',
+            icone: '🔥',
+            descricao:
+              'Prato típico tradicional à base de pimenta com folhas, tucupi e peixe, considerado a grande iguaria da culinária Macuxi.',
+            imagem:
+              'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80',
+            imagens: [
+              'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80',
+              'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80',
+            ],
+            lendaTitulo: 'O Ardente Encontro do Tucupi, das Folhas e da Partilha',
+            lenda:
+              'A damurida é o prato emblemático da culinária Macuxi, preparado tradicionalmente com tucupi, pimenta com folhas e peixe (ou outras proteínas da casa), muitas vezes cozido em panelas de barro. Seu ardor marcante pede atenção e respeito, simbolizando a força da floresta e a acolhida da família anfitriã. Compartilhar a damurida à mesa é vivenciar o sabor da identidade comunitária.',
+          },
+          {
+            id: 2,
+            titulo: 'Caxiri',
+            subtitulo: 'Bebida Fermentada Sagrada',
+            icone: '🌾',
+            descricao:
+              'Bebida fermentada tradicional feita à base de milho cozido, essencial nos rituais e na união para os trabalhos comunitários.',
+            imagem:
+              'https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=800&q=80',
+            imagens: [
+              'https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=800&q=80',
+              'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80',
+            ],
+            lendaTitulo: 'A Cuia que Fortalece os Mutirões e Celebrações',
+            lenda:
+              'Produzido de forma tradicional a partir do milho cozido e fermentado, o caxiri acompanha momentos decisivos da vida na comunidade. Ele está presente nas celebrações, nos rituais e nos trabalhos coletivos em que os moradores se unem para cuidar da roça, das construções e das atividades comunitárias. Servido na cuia, representa cooperação, memória e presença.',
+          },
+          {
+            id: 3,
+            titulo: 'Beiju e Farinha',
+            subtitulo: 'Sabores da Mandioca',
+            icone: '🌿',
+            descricao:
+              'Iguarias fundamentais preparadas de forma artesanal em tachos quentes e finalizadas com técnicas tradicionais no telhado.',
+            imagem:
+              'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80',
+            imagens: [
+              'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80',
+              'https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=800&q=80',
+            ],
+            lendaTitulo: 'O Ciclo da Mandioca e o Saber das Casas de Farinha',
+            lenda:
+              'A mandioca é o alicerce alimentar de gerações na região. Do processamento cuidadoso da raiz ao calor do forno/tacho e às técnicas tradicionais de preparo, cada etapa exige ritmo, coordenação e saber herdado. O beiju e a farinha acompanham as refeições diárias e traduzem a autonomia alimentar construída com trabalho e memória.',
+          },
+        ],
+        oficinas: [
+          {
+            id: 1,
+            titulo: 'Panela de Barro',
+            subtitulo: 'A Alma do Povo Macuxi',
+            icone: '🏺',
+            descricao:
+              'Oficina de moldagem e queima de barro com as artesãs da associação local, utilizando areias vermelha e branca.',
+            imagem:
+              'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=800&q=80',
+            imagens: [
+              'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=800&q=80',
+              'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=800&q=80',
+            ],
+            lendaTitulo: 'Barro, Areia e Paciência nas Mãos das Artesãs',
+            lenda:
+              'Na oficina de panela de barro, as artesãs da comunidade ensinam como escolher e misturar o barro com areias — como a vermelha e a branca — para que a peça suporte o calor do fogo sem trincar. Cada curva moldada à mão carrega tempo de secagem, técnica apurada e história familiar, mantendo viva uma arte central para a cultura e o sustento da Raposa I.',
+          },
+          {
+            id: 2,
+            titulo: 'Trilha da Cachoeira',
+            subtitulo: 'Imersão na Natureza',
+            icone: '💧',
+            descricao:
+              'Caminhada guiada por condutores locais com paradas para banho, contemplação da paisagem e resgate histórico.',
+            imagem:
+              'https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&w=800&q=80',
+            imagens: [
+              'https://images.unsplash.com/photo-1432821596592-e2c18b78144f?auto=format&fit=crop&w=800&q=80',
+              'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80',
+            ],
+            lendaTitulo: 'Caminhos Guiados entre Raízes, Sombras e Águas Claras',
+            lenda:
+              'A trilha conduzida pelos moradores transforma a caminhada em uma aula a céu aberto sobre território, plantas e histórias locais. Ao longo do percurso, os guias apontam referências naturais e tradições da comunidade até o encontro com a água, onde o banho e a contemplação renovam o corpo e aprofundam o respeito pela floresta.',
+          },
+          {
+            id: 3,
+            titulo: 'Arco e Flecha',
+            subtitulo: 'Tradição Milenar',
+            icone: '🏹',
+            descricao:
+              'Vivência sobre a confecção de hastes, penas estabilizadoras e prática de tiro ao alvo tradicional.',
+            imagem:
+              'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=800&q=80',
+            imagens: [
+              'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=800&q=80',
+              'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=800&q=80',
+            ],
+            lendaTitulo: 'Precisão, Calma e Escuta no Ofício Tradicional',
+            lenda:
+              'A prática do arco e flecha reúne habilidade manual e domínio emocional. Aprender a escolher materiais, preparar a haste, ajustar as penas e alinhar a mira exige foco, respiração calma e respeito ao instrumento. Transmitida desde cedo na comunidade, a vivência aproxima o visitante de um saber ancestral ligado à destreza e à convivência com o ambiente.',
+          },
+        ],
+      };
+
+      window.dadosLocais = dadosLocais;
+
+      // Índice atual do carrossel de cada card: `${categoria}-${index}`
+      const indicesCarrosselCard = {};
+
+      function obterGaleriaItem(item) {
+        if (!item) return [IMAGEM_PADRAO_PORTAL];
+        if (Array.isArray(item.imagens) && item.imagens.length > 0) {
+          const filtradas = item.imagens.filter(Boolean);
+          if (filtradas.length > 0) return filtradas;
+        }
+        if (item.imagem) {
+          return [item.imagem];
+        }
+        return [IMAGEM_PADRAO_PORTAL];
+      }
+
+      function mudarFotoCard(event, categoria, index, delta) {
+        event.stopPropagation();
+        const lista = dadosLocais[categoria] || [];
+        const item = lista[index];
+        const galeria = obterGaleriaItem(item);
+        if (galeria.length <= 1) return;
+
+        const chave = `${categoria}-${index}`;
+        const atual = indicesCarrosselCard[chave] || 0;
+        const proximo = (atual + delta + galeria.length) % galeria.length;
+        indicesCarrosselCard[chave] = proximo;
+
+        const imgEl = document.getElementById(`card-img-${categoria}-${index}`);
+        const contEl = document.getElementById(`card-cont-${categoria}-${index}`);
+        if (imgEl) imgEl.src = galeria[proximo];
+        if (contEl) {
+          contEl.textContent = `📷 ${proximo + 1}/${galeria.length}`;
+        }
+
+        const dotsEl = document.getElementById(`card-dots-${categoria}-${index}`);
+        if (dotsEl) {
+          dotsEl.querySelectorAll('span').forEach((dot, dIdx) => {
+            dot.className =
+              dIdx === proximo
+                ? 'h-1.5 w-3 rounded-full bg-brand-ochre transition-all'
+                : 'h-1.5 w-1.5 rounded-full bg-white/50 transition-all';
+          });
+        }
+      }
+
+      window.mudarFotoCard = mudarFotoCard;
+
+      let detalheAtual = null;
+
+      function escHtml(v) {
+        return String(v ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function mostrarDetalhe(categoria, index) {
+        document
+          .querySelectorAll('.tab-content')
+          .forEach((s) => s.classList.add('hidden'));
+        document.getElementById('tab-detalhe').classList.remove('hidden');
+
+        const lista = dadosLocais[categoria] || [];
+        const item = lista[index] || lista[0];
+        if (!item) return;
+        const idxReal = lista.indexOf(item);
+        detalheAtual = { categoria, index: idxReal };
+
+        const titulo = item.titulo || item.title || item.name || 'Item';
+        const subtitulo = item.subtitulo || 'Saber Tradicional Macuxi';
+        const icone = item.icone || item.icon || '✨';
+        const lendaTitulo = item.lendaTitulo || `Lenda e História de ${titulo}`;
+        const lenda =
+          item.lenda ||
+          item.descricao ||
+          item.description ||
+          item.desc ||
+          '';
+        const galeria = obterGaleriaItem(item);
+        const videoUrl = item.video || '';
+        const audioUrl = item.audio || '';
+        let fotoAtualIdx = Math.min(
+          indicesCarrosselCard[`${categoria}-${idxReal}`] || 0,
+          galeria.length - 1
+        );
+
+        document.getElementById('detalhe-conteudo').innerHTML = `
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div class="lg:col-span-6">
+                  <div class="flex justify-between items-center mb-3">
+                      <span class="bg-[#1f2e27] text-brand-ochre text-xs font-bold px-3 py-1 rounded-full border border-[#354f43]">MACUXI • RAPOSA I</span>
+                      <span class="text-brand-ochre text-xl">${escHtml(icone)}</span>
+                  </div>
+                  <h2 class="text-3xl font-bold text-stone-100 mb-1">${escHtml(titulo)}</h2>
+                  <p class="text-brand-ochre font-medium mb-4">${escHtml(subtitulo)}</p>
+                  <button type="button" onclick="abrirEditor('${categoria}', ${idxReal})"
+                    class="gestor-only items-center gap-1 mb-4 bg-brand-clay hover:bg-brand-ochre text-white text-xs font-semibold px-3 py-1.5 rounded-lg">
+                    ✏️ Editar este card
+                  </button>
+
+                  <!-- Abas interativas de mídia e lenda -->
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    <button type="button" id="btn-subaba-lenda"
+                      class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-brand-clay text-white transition">
+                      📖 Lenda &amp; História
+                    </button>
+                    ${videoUrl ? `<button type="button" id="btn-subaba-video"
+                      class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#1f2e27] text-stone-300 hover:text-amber-300 border border-[#354f43] transition">🎬 Vídeo</button>` : ''}
+                    ${audioUrl ? `<button type="button" id="btn-subaba-audio"
+                      class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#1f2e27] text-stone-300 hover:text-amber-300 border border-[#354f43] transition">🎧 Áudio</button>` : ''}
+                  </div>
+
+                  <div id="painel-subaba-lenda" class="bg-[#1f2e27]/80 border border-[#354f43] rounded-xl p-5">
+                    <h4 class="text-base font-bold text-amber-300 mb-2">${escHtml(lendaTitulo)}</h4>
+                    <p class="text-stone-300 leading-relaxed text-sm" style="white-space: pre-line">${escHtml(lenda)}</p>
+                  </div>
+
+                  ${videoUrl ? `<div id="painel-subaba-video" class="hidden bg-[#1f2e27]/80 border border-[#354f43] rounded-xl p-4">
+                    <h4 class="text-sm font-bold text-amber-300 mb-2">Vídeo — ${escHtml(titulo)}</h4>
+                   <video controls preload="metadata" src="${escHtml(videoUrl)}" class="w-full max-h-64 rounded-lg bg-black border border-[#354f43]">Seu navegador não suporta vídeo HTML5.</video>
+                  </div>` : ''}
+
+                  ${audioUrl ? `<div id="painel-subaba-audio" class="hidden bg-[#1f2e27]/80 border border-[#354f43] rounded-xl p-4">
+                    <h4 class="text-sm font-bold text-amber-300 mb-2">Áudio — ${escHtml(titulo)}</h4>
+                    <audio controls preload="none" src="${escHtml(audioUrl)}" class="w-full">Seu navegador não suporta áudio HTML5.</audio>
+                  </div>` : ''}
+              </div>
+
+              <div class="lg:col-span-6 space-y-3">
+                  <div class="relative rounded-xl overflow-hidden border border-[#354f43] shadow-md bg-[#1f2e27]">
+                      <img id="detalhe-album-img" src="${escHtml(galeria[fotoAtualIdx])}" alt="${escHtml(titulo)}"
+                        class="w-full h-72 object-cover cursor-zoom-in" title="Clique para ampliar a foto" />
+                      ${
+                        galeria.length > 1
+                          ? `
+                          <button type="button" id="detalhe-foto-prev"
+                            class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/65 hover:bg-black/85 text-white w-9 h-9 rounded-full flex items-center justify-center border border-white/20">
+                            ←
+                          </button>
+                          <button type="button" id="detalhe-foto-next"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/65 hover:bg-black/85 text-white w-9 h-9 rounded-full flex items-center justify-center border border-white/20">
+                            →
+                          </button>
+                          `
+                          : ''
+                      }
+                      <span id="detalhe-foto-contador"
+                        class="absolute bottom-2 left-2 bg-black/75 text-stone-100 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+                        ${fotoAtualIdx + 1} / ${galeria.length}
+                      </span>
+                      <button type="button" id="detalhe-abrir-zoom"
+                        class="absolute bottom-2 right-2 bg-black/75 hover:bg-black/90 text-amber-300 text-xs font-semibold px-2.5 py-1 rounded-lg border border-white/15">
+                        Ampliar foto 🔍
+                      </button>
+                  </div>
+
+                  ${
+                    galeria.length > 1
+                      ? `
+                        <div class="grid grid-cols-3 gap-2">
+                          ${galeria
+                            .map(
+                              (fotoUrl, idxFoto) => `
+                              <button type="button" data-thumb-idx="${idxFoto}"
+                                class="rounded-lg overflow-hidden border ${
+                                  idxFoto === fotoAtualIdx
+                                    ? 'border-brand-ochre ring-2 ring-brand-ochre/40'
+                                    : 'border-[#354f43] opacity-75 hover:opacity-100'
+                                } h-16 bg-[#1f2e27] transition">
+                                <img src="${escHtml(fotoUrl)}" alt="${escHtml(titulo)} foto ${idxFoto + 1}" class="w-full h-full object-cover" />
+                              </button>
+                            `
+                            )
+                            .join('')}
+                        </div>
+                      `
+                      : ''
+                  }
+              </div>
+          </div>
+        `;
+
+        const btnLenda = document.getElementById('btn-subaba-lenda');
+        const btnVideo = document.getElementById('btn-subaba-video');
+        const btnAudio = document.getElementById('btn-subaba-audio');
+        const painelLenda = document.getElementById('painel-subaba-lenda');
+        const painelVideo = document.getElementById('painel-subaba-video');
+        const painelAudio = document.getElementById('painel-subaba-audio');
+
+        function ativarSubaba(alvo) {
+          painelLenda?.classList.toggle('hidden', alvo !== 'lenda');
+          painelVideo?.classList.toggle('hidden', alvo !== 'video');
+          painelAudio?.classList.toggle('hidden', alvo !== 'audio');
+
+          const ativoCls =
+            'px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-brand-clay text-white transition';
+          const inativoCls =
+            'px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#1f2e27] text-stone-300 hover:text-amber-300 border border-[#354f43] transition';
+
+          if (btnLenda) btnLenda.className = alvo === 'lenda' ? ativoCls : inativoCls;
+          if (btnVideo) btnVideo.className = alvo === 'video' ? ativoCls : inativoCls;
+          if (btnAudio) btnAudio.className = alvo === 'audio' ? ativoCls : inativoCls;
+        }
+
+        btnLenda?.addEventListener('click', () => ativarSubaba('lenda'));
+        btnVideo?.addEventListener('click', () => ativarSubaba('video'));
+        btnAudio?.addEventListener('click', () => ativarSubaba('audio'));
+
+        const imgPrincipal = document.getElementById('detalhe-album-img');
+        const contador = document.getElementById('detalhe-foto-contador');
+
+        function atualizarAlbumDetalhe() {
+          if (imgPrincipal) imgPrincipal.src = galeria[fotoAtualIdx];
+          if (contador) {
+            contador.textContent = `${fotoAtualIdx + 1} / ${galeria.length}`;
+          }
+          document.querySelectorAll('button[data-thumb-idx]').forEach((b) => {
+            const bIdx = Number(b.getAttribute('data-thumb-idx'));
+            b.className = `rounded-lg overflow-hidden border ${
+              bIdx === fotoAtualIdx
+                ? 'border-brand-ochre ring-2 ring-brand-ochre/40'
+                : 'border-[#354f43] opacity-75 hover:opacity-100'
+            } h-16 bg-[#1f2e27] transition`;
+          });
+        }
+
+        atualizarAlbumDetalhe();
+
+        document.getElementById('detalhe-foto-prev')?.addEventListener('click', () => {
+          fotoAtualIdx = (fotoAtualIdx - 1 + galeria.length) % galeria.length;
+          atualizarAlbumDetalhe();
+        });
+
+        document.getElementById('detalhe-foto-next')?.addEventListener('click', () => {
+          fotoAtualIdx = (fotoAtualIdx + 1) % galeria.length;
+          atualizarAlbumDetalhe();
+        });
+
+        document.querySelectorAll('button[data-thumb-idx]').forEach((b) => {
+          b.addEventListener('click', () => {
+            fotoAtualIdx = Number(b.getAttribute('data-thumb-idx')) || 0;
+            atualizarAlbumDetalhe();
+          });
+        });
+
+        imgPrincipal?.addEventListener('click', () => {
+          abrirLightbox(galeria, fotoAtualIdx);
+        });
+
+        document.getElementById('detalhe-abrir-zoom')?.addEventListener('click', () => {
+          abrirLightbox(galeria, fotoAtualIdx);
+        });
+      }
+
+      function voltarParaAba() {
+        detalheAtual = null;
+        document.getElementById('tab-detalhe').classList.add('hidden');
+        document
+          .getElementById(`tab-${abaAtualAtiva}`)
+          .classList.remove('hidden');
+      }
+
+      function renderCards(gridId, apiItems, categoria) {
+        const grid = document.getElementById(gridId);
+        if (!grid) return;
+
+        const baseLocal = dadosLocais[categoria] || [];
+        const fonte =
+          Array.isArray(apiItems) && apiItems.length > 0 ? apiItems : baseLocal;
+
+        const cardsData = fonte.map((item, index) => {
+          const fallbackLocal = baseLocal[index] || baseLocal[0] || {};
+          const galeria = obterGaleriaItem(item);
+          const chave = `${categoria}-${index}`;
+          const idxAtual = Math.min(
+            indicesCarrosselCard[chave] || 0,
+            galeria.length - 1
+          );
+          indicesCarrosselCard[chave] = idxAtual;
+
+          return {
+            titulo:
+              item?.titulo ||
+              item?.title ||
+              item?.name ||
+              fallbackLocal.titulo ||
+              'Item',
+            subtitulo:
+              item?.subtitulo ||
+              fallbackLocal.subtitulo ||
+              'Saber Tradicional Macuxi',
+            icone: item?.icone || item?.icon || fallbackLocal.icone || '✨',
+            descricao:
+              item?.descricao ||
+              item?.description ||
+              item?.desc ||
+              fallbackLocal.descricao ||
+              '',
+            galeria,
+            idxAtual,
+          };
+        });
+
+        grid.innerHTML = cardsData
+          .map(
+            (item, index) => `
+            <div onclick="mostrarDetalhe('${categoria}', ${index})" class="bg-[#263831] p-5 rounded-2xl border border-[#354f43] shadow-md hover:border-brand-ochre cursor-pointer transition transform hover:-translate-y-1 flex flex-col justify-between">
+                <div>
+                    <div class="relative rounded-xl overflow-hidden border border-[#354f43] mb-4 bg-[#1f2e27]">
+                        <img id="card-img-${categoria}-${index}" src="${escHtml(item.galeria[item.idxAtual])}" alt="${escHtml(item.titulo)}" class="w-full h-44 object-cover" />
+                        <button type="button" onclick="event.stopPropagation(); abrirEditor('${categoria}', ${index})"
+                          class="gestor-only absolute top-2 left-2 items-center gap-1 bg-brand-clay hover:bg-brand-ochre text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow">
+                          ✏️ Editar
+                        </button>
+                        ${
+                          item.galeria.length > 1
+                            ? `
+                            <button type="button" onclick="mudarFotoCard(event, '${categoria}', ${index}, -1)"
+                              aria-label="Foto anterior"
+                              class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/65 hover:bg-black/90 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs border border-white/20">
+                              ←
+                            </button>
+                            <button type="button" onclick="mudarFotoCard(event, '${categoria}', ${index}, 1)"
+                              aria-label="Próxima foto"
+                              class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/65 hover:bg-black/90 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs border border-white/20">
+                              →
+                            </button>
+                            `
+                            : ''
+                        }
+                        <span id="card-cont-${categoria}-${index}" class="absolute bottom-2 right-2 bg-black/80 text-amber-300 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-white/15">
+                            📷 ${item.idxAtual + 1}/${item.galeria.length}
+                        </span>
+                        <div id="card-dots-${categoria}-${index}" class="absolute bottom-2 left-2 flex items-center gap-1 bg-black/50 px-2 py-1 rounded-full">
+                          ${item.galeria
+                            .map(
+                              (_, dIdx) => `
+                              <span class="${
+                                dIdx === item.idxAtual
+                                  ? 'h-1.5 w-3 rounded-full bg-brand-ochre transition-all'
+                                  : 'h-1.5 w-1.5 rounded-full bg-white/50 transition-all'
+                              }"></span>
+                            `
+                            )
+                            .join('')}
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="bg-[#1f2e27] text-brand-ochre text-xs font-bold px-3 py-1 rounded-full border border-[#354f43]">MACUXI</span>
+                        <span class="text-brand-ochre text-lg">${escHtml(item.icone)}</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-100 mb-1">${escHtml(item.titulo)}</h3>
+                    <p class="text-brand-ochre text-sm font-medium mb-2">${escHtml(item.subtitulo)}</p>
+                    <p class="text-stone-300 text-sm leading-relaxed">${escHtml(item.descricao)}</p>
+                </div>
+                <div class="mt-4 pt-2 border-t border-[#354f43]/60 text-xs font-semibold text-brand-ochre flex items-center justify-between">
+                    <span>Explorar conteúdo e álbum →</span>
+                    <span class="text-stone-400 font-normal">${item.galeria.length} ${item.galeria.length === 1 ? 'foto' : 'fotos'}</span>
+                </div>
+            </div>
+        `
+          )
+          .join('');
+      }
+
+      function sincronizarCategoriaNaTela(categoria, itens) {
+        const mapaGrid = {
+          entidades: 'entities-grid',
+          gastronomia: 'gastronomia-grid',
+          oficinas: 'oficinas-grid',
+        };
+
+        if (Array.isArray(itens) && itens.length > 0 && itens[0].fromDb) {
+          dadosLocais[categoria] = itens.map((item, idx) => {
+            const localRef = dadosLocais[categoria]?.[idx] || {};
+            const imgs = (item.imagens || []).filter(Boolean);
+            return {
+              ...localRef,
+              ...item,
+              video: item.video || '',
+              audio: item.audio || '',
+              subtitulo: item.subtitulo || localRef.subtitulo || '',
+              icone: item.icone || localRef.icone || '',
+              lendaTitulo:
+                item.lendaTitulo ||
+                localRef.lendaTitulo ||
+                `Lenda e História de ${item.titulo || 'Item'}`,
+              imagens: imgs,
+              imagem: imgs[0] || localRef.imagem || '',
+            };
+          });
+        } else if (Array.isArray(itens) && itens.length > 0) {
+          dadosLocais[categoria] = itens.map((item, idx) => {
+            const localRef = dadosLocais[categoria]?.[idx] || {};
+            const temGaleriaApi = Array.isArray(item.imagens) && item.imagens.length > 0;
+            const temImagemApi = Boolean(item.imagem);
+
+            const galeria = temGaleriaApi
+              ? item.imagens.filter(Boolean)
+              : temImagemApi
+              ? [item.imagem]
+              : obterGaleriaItem(localRef);
+
+            return {
+              ...localRef,
+              ...item,
+              titulo: item.titulo || item.title || item.name || localRef.titulo,
+              subtitulo:
+                item.subtitulo || localRef.subtitulo || 'Saber Tradicional Macuxi',
+              icone: item.icone || item.icon || localRef.icone || '✨',
+              descricao:
+                item.descricao ||
+                item.description ||
+                item.desc ||
+                localRef.descricao ||
+                '',
+              lenda:
+                item.lenda ||
+                item.descricao ||
+                item.description ||
+                localRef.lenda ||
+                '',
+              lendaTitulo:
+                item.lendaTitulo ||
+                localRef.lendaTitulo ||
+                `Lenda e História de ${item.titulo || item.title || item.name || localRef.titulo || 'Item'}`,
+              imagem: galeria[0],
+              imagens: galeria,
+            };
+          });
+        }
+
+        renderCards(mapaGrid[categoria], dadosLocais[categoria], categoria);
+      }
+
+      window.sincronizarCategoriaNaTela = sincronizarCategoriaNaTela;
+
+      // --- EDIÇÃO DE CARDS (somente gestor) ---
+      const NOME_CATEGORIA = {
+        gastronomia: 'Gastronomia',
+        oficinas: 'Oficinas',
+        entidades: 'Entidades Lendárias',
+      };
+      const ROTA_CATEGORIA = {
+        gastronomia: '/gastronomia',
+        oficinas: '/oficinas',
+        entidades: '/entities',
+      };
+      const MAX_FOTOS = 8;
+      let editor = null;
+
+      async function apiGestor(method, caminho, corpo) {
+        const res = await fetch(`${API_ORIGIN_URL}${caminho}`, {
+          method,
+          headers: corpo !== undefined ? { 'Content-Type': 'application/json' } : {},
+          body: corpo !== undefined ? JSON.stringify(corpo) : undefined,
+          credentials: 'same-origin',
+        });
+        let dados = null;
+        try {
+          dados = await res.json();
+        } catch (e) {}
+        if (!res.ok) {
+          throw new Error(
+            res.status === 401
+              ? 'Sua sessão de gestor expirou. Clique em Sair e entre novamente.'
+              : (dados && (dados.message || dados.error)) ||
+                  'Não foi possível concluir a ação.'
+          );
+        }
+        return dados;
+      }
+
+      function fotosReais(item) {
+        if (!item) return [];
+        if (Array.isArray(item.imagens) && item.imagens.filter(Boolean).length) {
+          return item.imagens.filter(Boolean);
+        }
+        return item.imagem ? [item.imagem] : [];
+      }
+
+      async function recarregarCategoria(categoria) {
+        const res = await fetch(`${API_ORIGIN_URL}${ROTA_CATEGORIA[categoria]}`, {
+          cache: 'no-store',
+        });
+        if (res.ok) sincronizarCategoriaNaTela(categoria, await res.json());
+      }
+
+      async function garantirNoBanco(categoria) {
+        const lista = dadosLocais[categoria] || [];
+        if (lista.length && lista.every((i) => i.fromDb)) return;
+        const itens = lista.map((i) => ({
+          titulo: i.titulo || i.title || i.name || 'Item',
+          subtitulo: i.subtitulo || '',
+          icone: i.icone || '',
+          descricao: i.descricao || '',
+          lenda: i.lenda || i.descricao || '',
+          video_url: i.video || '',
+          audio_url: i.audio || '',
+          imagens: fotosReais(i),
+        }));
+        const salvos = await apiGestor('POST', '/admin/cards/seed', { categoria, itens });
+        sincronizarCategoriaNaTela(categoria, salvos);
+      }
+
+      function campo(id) {
+        return document.getElementById(id);
+      }
+
+      function mostrarErroEditor(msg) {
+        const el = campo('ed-erro');
+        el.textContent = msg || '';
+        el.classList.toggle('hidden', !msg);
+      }
+
+      function desenharFotosEditor() {
+        const box = campo('ed-fotos');
+        box.innerHTML = '';
+        editor.imagens.forEach((url, i) => {
+          const d = document.createElement('div');
+          d.className = 'relative rounded-lg overflow-hidden border border-[#354f43] bg-[#1f2e27]';
+          const img = document.createElement('img');
+          img.src = url;
+          img.alt = `Foto ${i + 1}`;
+          img.className = 'w-full h-20 object-cover';
+          const rm = document.createElement('button');
+          rm.type = 'button';
+          rm.textContent = '✕';
+          rm.title = 'Remover foto';
+          rm.className = 'absolute top-1 right-1 bg-black/75 hover:bg-red-600 text-white text-xs w-6 h-6 rounded-full';
+          rm.onclick = () => {
+            editor.imagens.splice(i, 1);
+            desenharFotosEditor();
+          };
+          d.append(img, rm);
+          if (i === 0) {
+            const tag = document.createElement('span');
+            tag.textContent = 'Capa';
+            tag.className = 'absolute bottom-1 left-1 bg-black/75 text-amber-300 text-[10px] font-semibold px-1.5 py-0.5 rounded';
+            d.append(tag);
+          } else {
+            const cap = document.createElement('button');
+            cap.type = 'button';
+            cap.textContent = 'Tornar capa';
+            cap.className = 'absolute bottom-1 left-1 bg-black/75 hover:bg-black text-amber-300 text-[10px] font-semibold px-1.5 py-0.5 rounded';
+            cap.onclick = () => {
+              editor.imagens.unshift(editor.imagens.splice(i, 1)[0]);
+              desenharFotosEditor();
+            };
+            d.append(cap);
+          }
+          box.append(d);
+        });
+        if (!editor.imagens.length) {
+          box.innerHTML = '<p class="col-span-full text-xs text-stone-400">Nenhuma foto. O card usará uma imagem padrão.</p>';
+        }
+      }
+
+      function abrirEditor(categoria, index) {
+        const item = index == null ? null : (dadosLocais[categoria] || [])[index];
+        editor = {
+          categoria,
+          index: item ? index : null,
+          imagens: item ? [...fotosReais(item)] : [],
+          video: item ? item.video || '' : '',
+          audio: item ? item.audio || '' : '',
+        };
+        campo('editor-categoria').textContent = NOME_CATEGORIA[categoria] || categoria;
+        campo('editor-titulo-modal').textContent = item ? 'Editar card' : 'Novo card';
+        campo('ed-titulo').value = item ? item.titulo || '' : '';
+        campo('ed-subtitulo').value = item ? item.subtitulo || '' : '';
+        campo('ed-icone').value = item ? item.icone || '' : '';
+        campo('ed-descricao').value = item ? item.descricao || '' : '';
+        campo('ed-lenda').value = item ? item.lenda || item.descricao || '' : '';
+        campo('ed-link').value = '';
+        campo('ed-foto-status').textContent = '';
+        campo('ed-excluir').classList.toggle('hidden', !item);
+        mostrarErroEditor('');
+        desenharFotosEditor();
+        desenharMidiasEditor();
+        campo('modal-editor').classList.remove('hidden');
+        campo('ed-titulo').focus();
+      }
+
+      function fecharEditor() {
+        campo('modal-editor').classList.add('hidden');
+        editor = null;
+      }
+
+      function reduzirImagem(arquivo) {
+        return new Promise((resolve, reject) => {
+          const url = URL.createObjectURL(arquivo);
+          const img = new Image();
+          img.onload = () => {
+            URL.revokeObjectURL(url);
+            const escala = Math.min(1, 1280 / Math.max(img.width, img.height));
+            const c = document.createElement('canvas');
+            c.width = Math.max(1, Math.round(img.width * escala));
+            c.height = Math.max(1, Math.round(img.height * escala));
+            const ctx = c.getContext('2d');
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(0, 0, c.width, c.height);
+            ctx.drawImage(img, 0, 0, c.width, c.height);
+            let q = 0.85;
+            let dataUrl = c.toDataURL('image/jpeg', q);
+            while (dataUrl.length > 1.9 * 1024 * 1024 && q > 0.4) {
+              q -= 0.15;
+              dataUrl = c.toDataURL('image/jpeg', q);
+            }
+            resolve(dataUrl);
+          };
+          img.onerror = () => {
+            URL.revokeObjectURL(url);
+            reject(new Error('Não foi possível ler essa imagem.'));
+          };
+          img.src = url;
+        });
+      }
+
+      async function enviarArquivos(files) {
+        const status = campo('ed-foto-status');
+        mostrarErroEditor('');
+        for (const arquivo of files) {
+          if (editor.imagens.length >= MAX_FOTOS) {
+            mostrarErroEditor(`Use no máximo ${MAX_FOTOS} fotos por card.`);
+            break;
+          }
+          try {
+            status.textContent = `Enviando ${arquivo.name}…`;
+            const dataUrl = await reduzirImagem(arquivo);
+            const r = await apiGestor('POST', '/admin/upload', { dataUrl });
+            editor.imagens.push(r.url);
+            desenharFotosEditor();
+          } catch (err) {
+            mostrarErroEditor(err.message);
+          }
+        }
+        status.textContent = '';
+      }
+
+      function desenharMidiasEditor() {
+        if (!editor) return;
+        const videoInfo = campo('ed-video-info');
+        const audioInfo = campo('ed-audio-info');
+        videoInfo.textContent = editor.video ? 'Vídeo cadastrado e pronto para reprodução.' : 'Nenhum vídeo cadastrado.';
+        audioInfo.textContent = editor.audio ? 'Áudio cadastrado e pronto para reprodução.' : 'Nenhum áudio cadastrado.';
+        campo('ed-video-remover').classList.toggle('hidden', !editor.video);
+        campo('ed-audio-remover').classList.toggle('hidden', !editor.audio);
+      }
+
+      async function enviarMidia(arquivo, tipo) {
+        if (!editor || !arquivo) return;
+        const status = campo('ed-midia-status');
+        mostrarErroEditor('');
+        if (arquivo.size > 100 * 1024 * 1024) {
+          mostrarErroEditor('O arquivo deve ter no máximo 100 MB.');
+          return;
+        }
+        try {
+          status.textContent = `Preparando envio de ${arquivo.name}…`;
+          const autorizado = await apiGestor('POST', '/admin/media/sign', {
+            contentType: arquivo.type,
+            size: arquivo.size,
+          });
+          status.textContent = `Enviando ${arquivo.name}…`;
+          const resposta = await fetch(autorizado.uploadUrl, {
+            method: 'PUT',
+            headers: { 'Content-Type': arquivo.type, 'x-upsert': 'false' },
+            body: arquivo,
+          });
+          if (!resposta.ok) {
+            const detalhe = await resposta.text().catch(() => '');
+            throw new Error(`O armazenamento recusou o arquivo (${resposta.status}). ${detalhe.slice(0, 140)}`);
+          }
+          editor[tipo] = autorizado.publicUrl;
+          desenharMidiasEditor();
+          status.textContent = 'Arquivo enviado. Clique em Salvar para associá-lo ao card.';
+        } catch (err) {
+          mostrarErroEditor(err.message || 'Não foi possível enviar a mídia.');
+          status.textContent = '';
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        campo('ed-arquivo').addEventListener('change', async (e) => {
+          const files = Array.from(e.target.files || []);
+          e.target.value = '';
+          if (editor && files.length) await enviarArquivos(files);
+        });
+        campo('ed-video-arquivo').addEventListener('change', async (e) => {
+          const arquivo = e.target.files && e.target.files[0];
+          e.target.value = '';
+          if (arquivo) await enviarMidia(arquivo, 'video');
+        });
+        campo('ed-audio-arquivo').addEventListener('change', async (e) => {
+          const arquivo = e.target.files && e.target.files[0];
+          e.target.value = '';
+          if (arquivo) await enviarMidia(arquivo, 'audio');
+        });
+        campo('ed-video-remover').addEventListener('click', () => {
+          if (!editor) return;
+          editor.video = '';
+          campo('ed-midia-status').textContent = 'Vídeo removido do card. Salve para confirmar.';
+          desenharMidiasEditor();
+        });
+        campo('ed-audio-remover').addEventListener('click', () => {
+          if (!editor) return;
+          editor.audio = '';
+          campo('ed-midia-status').textContent = 'Áudio removido do card. Salve para confirmar.';
+          desenharMidiasEditor();
+        });
+        campo('ed-link-add').addEventListener('click', () => {
+          const url = campo('ed-link').value.trim();
+          if (!url) return;
+          if (!/^https?:\/\/\S+$/i.test(url)) {
+            mostrarErroEditor('Cole um link que comece com http:// ou https://');
+            return;
+          }
+          if (editor.imagens.length >= MAX_FOTOS) {
+            mostrarErroEditor(`Use no máximo ${MAX_FOTOS} fotos por card.`);
+            return;
+          }
+          mostrarErroEditor('');
+          editor.imagens.push(url);
+          campo('ed-link').value = '';
+          desenharFotosEditor();
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && editor) fecharEditor();
+        });
+      });
+
+      function ocupado(sim) {
+        campo('ed-salvar').disabled = sim;
+        campo('ed-salvar').textContent = sim ? 'Salvando…' : 'Salvar';
+        campo('ed-excluir').disabled = sim;
+      }
+
+      function atualizarDetalheSeAberto(categoria, index) {
+        const aberto = !campo('tab-detalhe').classList.contains('hidden');
+        if (aberto && detalheAtual && detalheAtual.categoria === categoria) {
+          const lista = dadosLocais[categoria] || [];
+          if (lista.length) mostrarDetalhe(categoria, Math.min(index ?? detalheAtual.index, lista.length - 1));
+          else voltarParaAba();
+        }
+      }
+
+      async function salvarEditor(e) {
+        e.preventDefault();
+        if (!editor) return;
+        const titulo = campo('ed-titulo').value.trim();
+        if (!titulo) {
+          mostrarErroEditor('Informe o título do card.');
+          return;
+        }
+        const corpo = {
+          titulo,
+          subtitulo: campo('ed-subtitulo').value.trim(),
+          icone: campo('ed-icone').value.trim(),
+          descricao: campo('ed-descricao').value.trim(),
+          lenda: campo('ed-lenda').value.trim(),
+          video_url: editor.video || '',
+          audio_url: editor.audio || '',
+          imagens: editor.imagens,
+        };
+        const { categoria } = editor;
+        let { index } = editor;
+        ocupado(true);
+        mostrarErroEditor('');
+        try {
+          await garantirNoBanco(categoria);
+          if (index == null) {
+            await apiGestor('POST', '/admin/cards', { ...corpo, categoria });
+          } else {
+            const alvo = (dadosLocais[categoria] || [])[index];
+            if (!alvo || !alvo.fromDb) throw new Error('Card não encontrado. Recarregue a página.');
+            await apiGestor('PUT', `/admin/cards/${alvo.id}`, corpo);
+          }
+          await recarregarCategoria(categoria);
+          fecharEditor();
+          atualizarDetalheSeAberto(categoria, index);
+        } catch (err) {
+          mostrarErroEditor(err.message);
+        } finally {
+          ocupado(false);
+        }
+      }
+
+      async function excluirCard() {
+        if (!editor || editor.index == null) return;
+        if (!confirm('Excluir este card definitivamente?')) return;
+        const { categoria, index } = editor;
+        ocupado(true);
+        mostrarErroEditor('');
+        try {
+          await garantirNoBanco(categoria);
+          const alvo = (dadosLocais[categoria] || [])[index];
+          if (!alvo || !alvo.fromDb) throw new Error('Card não encontrado. Recarregue a página.');
+          await apiGestor('DELETE', `/admin/cards/${alvo.id}`);
+          await recarregarCategoria(categoria);
+          fecharEditor();
+          const aberto = !campo('tab-detalhe').classList.contains('hidden');
+          if (aberto) voltarParaAba();
+        } catch (err) {
+          mostrarErroEditor(err.message);
+        } finally {
+          ocupado(false);
+        }
+      }
+
+      window.abrirEditor = abrirEditor;
+
+      async function fetchApiData() {
+        renderCards('entities-grid', dadosLocais.entidades, 'entidades');
+        renderCards('gastronomia-grid', dadosLocais.gastronomia, 'gastronomia');
+        renderCards('oficinas-grid', dadosLocais.oficinas, 'oficinas');
+
+        try {
+          const [entitiesRes, gasRes, ofRes] = await Promise.all([
+            fetch(`${API_ORIGIN_URL}/entities`),
+            fetch(`${API_ORIGIN_URL}/gastronomia`),
+            fetch(`${API_ORIGIN_URL}/oficinas`),
+          ]);
+
+          if (entitiesRes.ok) {
+            sincronizarCategoriaNaTela('entidades', await entitiesRes.json());
+          }
+          if (gasRes.ok) {
+            sincronizarCategoriaNaTela('gastronomia', await gasRes.json());
+          }
+          if (ofRes.ok) {
+            sincronizarCategoriaNaTela('oficinas', await ofRes.json());
+          }
+        } catch (error) {
+          console.log('Modo estático/mock ativo.');
+        }
+      }
+
+      fetchApiData();
+
+      // --- CHAT GERAL ---
+      function escapeHtmlChat(str) {
+        return String(str ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function obterSessaoChat() {
+        let jwt = null;
+        let user = null;
+        try {
+          jwt = localStorage.getItem('portal_token');
+          user = JSON.parse(localStorage.getItem('portal_user') || 'null');
+        } catch (_) {}
+        const papel = user?.role || 'Turista';
+        const ehGestor = String(papel).toLowerCase() === 'gestor';
+        return { jwt, user, papel, ehGestor, logado: Boolean(jwt && user) };
+      }
+
+      function atualizarEstadoChat() {
+        const sessao = obterSessaoChat();
+        const avisoEl = document.getElementById('chat-aviso-visitante');
+        const formEl = document.getElementById('form-chat-comentario');
+        const badgeEl = document.getElementById('chat-usuario-badge');
+
+        if (sessao.logado) {
+          avisoEl?.classList.add('hidden');
+          formEl?.classList.remove('hidden');
+          if (badgeEl) {
+            badgeEl.textContent = `Enviando como ${sessao.user?.username || 'Usuário'} (${sessao.papel})`;
+          }
+        } else {
+          avisoEl?.classList.remove('hidden');
+          formEl?.classList.add('hidden');
+        }
+
+        carregarComentariosChat();
+      }
+
+      window.atualizarEstadoChat = atualizarEstadoChat;
+
+      async function carregarComentariosChat() {
+        const listaEl = document.getElementById('chat-lista-mensagens');
+        if (!listaEl) return;
+
+        try {
+          const res = await fetch(`${API_ORIGIN_URL}/comentarios?t=${Date.now()}`);
+          if (!res.ok) throw new Error('Falha ao carregar mensagens');
+          const mensagens = await res.json();
+          const sessao = obterSessaoChat();
+
+          if (!Array.isArray(mensagens) || mensagens.length === 0) {
+            listaEl.innerHTML =
+              '<p class="text-sm text-stone-400">Nenhuma dúvida ou avaliação ainda. Seja o primeiro!</p>';
+            return;
+          }
+
+          listaEl.innerHTML = mensagens
+            .map((m) => {
+              const ehAutor =
+                sessao.logado &&
+                m.autorId != null &&
+                String(m.autorId) === String(sessao.user?.id);
+              const podeExcluir = sessao.logado && (sessao.ehGestor || ehAutor);
+              const ehGestorMsg = String(m.papel || '').toLowerCase() === 'gestor';
+              const dataFormatada = m.criadoEm
+                ? new Date(m.criadoEm).toLocaleString('pt-BR', {
+                    dateStyle: 'short',
+                    timeStyle: 'short',
+                  })
+                : '';
+
+              return `
+                <div class="rounded-xl p-3.5 border ${
+                  ehGestorMsg
+                    ? 'bg-[#263831] border-amber-500/40'
+                    : 'bg-[#263831]/80 border-[#354f43]'
+                }">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                    <div class="flex items-center gap-2">
+                      <span class="text-xs font-bold text-stone-100">${escapeHtmlChat(m.autor)}</span>
+                      <span class="text-[11px] px-2 py-0.5 rounded-full ${
+                        ehGestorMsg
+                          ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                          : 'bg-[#1f2e27] text-brand-ochre border border-[#354f43]'
+                      }">
+                        ${escapeHtmlChat(m.papel || 'Turista')}
+                      </span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <span class="text-[11px] text-stone-400">${dataFormatada}</span>
+                      ${
+                        podeExcluir
+                          ? `<button type="button" data-excluir-comentario="${m.id}" class="text-xs text-red-400 hover:text-red-300">Excluir</button>`
+                          : ''
+                      }
+                    </div>
+                  </div>
+                  <p class="text-sm text-stone-200 leading-relaxed">${escapeHtmlChat(m.mensagem)}</p>
+                </div>
+              `;
+            })
+            .join('');
+
+          listaEl.scrollTop = listaEl.scrollHeight;
+
+          listaEl.querySelectorAll('button[data-excluir-comentario]').forEach((btnExc) => {
+            btnExc.addEventListener('click', async () => {
+              const idComentario = btnExc.getAttribute('data-excluir-comentario');
+              const sessaoAtual = obterSessaoChat();
+              try {
+                const resp = await fetch(
+                  `${API_ORIGIN_URL}/comentarios/${encodeURIComponent(idComentario)}`,
+                  {
+                    method: 'DELETE',
+                    headers: {
+                      Authorization: `Bearer ${sessaoAtual.jwt}`,
+                    },
+                  }
+                );
+                const dados = await resp.json().catch(() => ({}));
+                if (!resp.ok) {
+                  alert(dados.error || 'Não foi possível excluir a mensagem.');
+                  return;
+                }
+                await carregarComentariosChat();
+              } catch (_) {
+                alert('Erro de conexão ao excluir mensagem.');
+              }
+            });
+          });
+        } catch (_) {
+          listaEl.innerHTML =
+            '<p class="text-sm text-stone-400">Não foi possível carregar as mensagens no momento.</p>';
+        }
+      }
+
+      document
+        .getElementById('chat-btn-abrir-auth')
+        ?.addEventListener('click', (e) => {
+          if (typeof window.abrirModalLogin === 'function') {
+            window.abrirModalLogin(e);
+          }
+        });
+
+      document
+        .getElementById('form-chat-comentario')
+        ?.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const feedback = document.getElementById('chat-feedback');
+          const input = document.getElementById('chat-mensagem-input');
+          const mensagem = input?.value.trim() || '';
+          const sessao = obterSessaoChat();
+
+          if (!sessao.logado) {
+            if (feedback) feedback.textContent = 'Faça login para enviar sua dúvida ou avaliação.';
+            return;
+          }
+          if (!mensagem) return;
+
+          if (feedback) feedback.textContent = 'Enviando...';
+
+          try {
+            const res = await fetch(`${API_ORIGIN_URL}/comentarios`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${sessao.jwt}`,
+              },
+              body: JSON.stringify({ mensagem }),
+            });
+
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok) {
+              if (feedback) {
+                feedback.textContent = data.error || 'Erro ao enviar mensagem.';
+              }
+              return;
+            }
+
+            if (input) input.value = '';
+            if (feedback) feedback.textContent = 'Enviado!';
+            await carregarComentariosChat();
+          } catch (_) {
+            if (feedback) {
+              feedback.textContent = 'Falha ao conectar com o servidor.';
+            }
+          }
+        });
+
+      // --- AGENDAMENTO ---
+      document
+        .getElementById('booking-form')
+        ?.addEventListener('submit', async (ev) => {
+          ev.preventDefault();
+          const msg = document.getElementById('booking-msg');
+          const payload = Object.fromEntries(new FormData(ev.target));
+          msg.classList.remove('hidden', 'text-red-400', 'text-green-400');
+          try {
+            const res = await fetch(`${API_ORIGIN_URL}/bookings`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            });
+            const json = await res.json().catch(() => ({}));
+            msg.textContent =
+              json.message ||
+              (res.ok ? 'Agendamento enviado!' : 'Não foi possível enviar.');
+            msg.classList.add(res.ok ? 'text-green-400' : 'text-red-400');
+            if (res.ok) ev.target.reset();
+          } catch (e) {
+            msg.textContent = 'Não foi possível enviar. Tente novamente.';
+            msg.classList.add('text-red-400');
+          }
+        });
+
+      atualizarEstadoChat();
+    </script>
+
+    <!-- MODAL DE LOGIN / CADASTRO -->
+    <div
+      id="modal-login"
+      class="hidden fixed inset-0 bg-black/75 flex items-center justify-center z-50 px-4"
+    >
+      <div
+        class="bg-[#263831] text-stone-100 p-6 sm:p-8 rounded-2xl border border-[#354f43] shadow-2xl w-full max-w-md"
+      >
+        <div class="flex items-center justify-between mb-5">
+          <h2 class="text-2xl font-bold text-stone-100">Acessar Portal</h2>
+          <button
+            type="button"
+            id="fechar-login"
+            class="text-stone-400 hover:text-white text-xl leading-none"
+            aria-label="Fechar"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div class="flex gap-2 mb-5 text-sm font-semibold">
+          <button
+            type="button"
+            id="aba-entrar"
+            class="flex-1 py-2 rounded-lg bg-brand-clay text-white transition"
+          >
+            Entrar
+          </button>
+          <button
+            type="button"
+            id="aba-cadastrar"
+            class="flex-1 py-2 rounded-lg bg-[#1f2e27] text-stone-300 hover:bg-[#354f43] transition"
+          >
+            Criar conta
+          </button>
+        </div>
+
+        <form id="form-login" class="space-y-4">
+          <div>
+            <label
+              for="login-identifier"
+              class="block text-sm font-medium text-stone-300 mb-1"
+            >
+              Usuário ou E-mail
+            </label>
+            <input
+              type="text"
+              id="login-identifier"
+              required
+              autocomplete="username"
+              placeholder="Seu usuário ou e-mail"
+              class="w-full px-3.5 py-2.5 rounded-lg bg-[#1f2e27] border border-[#354f43] text-stone-100 placeholder-stone-500 focus:outline-none focus:border-brand-ochre"
+            />
+          </div>
+
+          <div>
+            <label
+              for="login-password"
+              class="block text-sm font-medium text-stone-300 mb-1"
+            >
+              Senha
+            </label>
+            <input
+              type="password"
+              id="login-password"
+              required
+              autocomplete="current-password"
+              placeholder="••••••••"
+              class="w-full px-3.5 py-2.5 rounded-lg bg-[#1f2e27] border border-[#354f43] text-stone-100 placeholder-stone-500 focus:outline-none focus:border-brand-ochre"
+            />
+          </div>
+
+          <div class="flex items-center justify-end gap-3 pt-2">
+            <button
+              type="button"
+              id="cancelar-login"
+              class="px-4 py-2 rounded-lg bg-[#1f2e27] hover:bg-[#354f43] text-stone-300 text-sm transition"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="px-5 py-2 rounded-lg bg-brand-clay hover:bg-brand-ochre text-white text-sm font-semibold transition shadow-sm"
+            >
+              Entrar
+            </button>
+          </div>
+        </form>
+
+        <form id="form-cadastro" class="hidden space-y-4">
+          <div>
+            <label
+              for="cad-username"
+              class="block text-sm font-medium text-stone-300 mb-1"
+            >
+              Usuário
+            </label>
+            <input
+              type="text"
+              id="cad-username"
+              required
+              minlength="3"
+              maxlength="30"
+              autocomplete="username"
+              placeholder="3 a 30 letras, números, ponto ou hífen"
+              class="w-full px-3.5 py-2.5 rounded-lg bg-[#1f2e27] border border-[#354f43] text-stone-100 placeholder-stone-500 focus:outline-none focus:border-brand-ochre"
+            />
+          </div>
+          <div>
+            <label
+              for="cad-email"
+              class="block text-sm font-medium text-stone-300 mb-1"
+            >
+              E-mail
+            </label>
+            <input
+              type="email"
+              id="cad-email"
+              required
+              maxlength="120"
+              autocomplete="email"
+              placeholder="voce@exemplo.com"
+              class="w-full px-3.5 py-2.5 rounded-lg bg-[#1f2e27] border border-[#354f43] text-stone-100 placeholder-stone-500 focus:outline-none focus:border-brand-ochre"
+            />
+          </div>
+          <div>
+            <label
+              for="cad-password"
+              class="block text-sm font-medium text-stone-300 mb-1"
+            >
+              Senha (mínimo 8 caracteres)
+            </label>
+            <input
+              type="password"
+              id="cad-password"
+              required
+              minlength="8"
+              maxlength="100"
+              autocomplete="new-password"
+              placeholder="••••••••"
+              class="w-full px-3.5 py-2.5 rounded-lg bg-[#1f2e27] border border-[#354f43] text-stone-100 placeholder-stone-500 focus:outline-none focus:border-brand-ochre"
+            />
+          </div>
+          <div class="flex items-center justify-end gap-3 pt-2">
+            <button
+              type="button"
+              id="cancelar-cadastro"
+              class="px-4 py-2 rounded-lg bg-[#1f2e27] hover:bg-[#354f43] text-stone-300 text-sm transition"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="px-5 py-2 rounded-lg bg-brand-clay hover:bg-brand-ochre text-white text-sm font-semibold transition shadow-sm"
+            >
+              Criar conta
+            </button>
+          </div>
+        </form>
+
+        <p id="login-erro" class="text-red-400 text-sm mt-4 min-h-[1.25rem]"></p>
+      </div>
+    </div>
+
+    <script src="./login.js"></script>
+  </body>
+</html>
